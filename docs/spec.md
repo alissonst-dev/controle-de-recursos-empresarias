@@ -1,12 +1,12 @@
-# 🛠️ Especificação Técnica (Tech Spec) - StockFlow
+# 🛠️ Especificação Técnica (Tech Spec) - Sistema de Recursos Empresariais
 
-Este documento descreve a arquitetura técnica, o modelo de dados e os contratos de API (via JSON Server) da aplicação StockFlow, um sistema de controle de estoque e vendas.
+Este documento descreve a arquitetura técnica, o modelo de dados e os contratos de API (via JSON Server) da aplicação, que tem como objetivo gerenciar recursos empresariais como produtos, vendas e fornecedores.
 
 ---
 
 ## 1. Modelo de Dados (Diagrama ER)
 
-Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do banco de dados (`db.json`):
+Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do banco de dados (`db.json`) e como as entidades se relacionam.
 
 ```mermaid
 erDiagram
@@ -99,6 +99,7 @@ POST /fornecedores - Cadastra um fornecedor.
 5. Estrutura do Banco de Dados (db.json)
 
 Esta é a representação em formato JSON do banco de dados simulado:
+
 {
   "produtos": [
     {
@@ -133,4 +134,3 @@ Esta é a representação em formato JSON do banco de dados simulado:
     }
   ]
 }
-```
