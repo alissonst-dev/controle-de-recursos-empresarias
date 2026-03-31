@@ -6,101 +6,81 @@ Este documento descreve a arquitetura técnica, o modelo de dados e os contratos
 
 ## 1. Modelo de Dados (Diagrama ER)
 
-Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do banco de dados (`db.json`) e como as entidades se relacionam.
-
-````mermaid
+```mermaid
 erDiagram
-PRODUTO ||--o{ VENDA_ITEM : "compõe"
-VENDA ||--o{ VENDA_ITEM : "contém"
+PRODUTO ||--o{ VENDA_ITEM : compoe
+VENDA ||--o{ VENDA_ITEM : contem
 
 PRODUTO {
-string id PK "Gerado automaticamente"
-string nome
-float preco
-int quantidade
+    string id PK
+    string nome
+    float preco
+    int quantidade
 }
 
 VENDA {
-string id PK
-string data "Formato ISO (YYYY-MM-DD)"
-float total
+    string id PK
+    string data
+    float total
 }
 
 VENDA_ITEM {
-string id PK
-string vendaId FK "Referência da venda"
-string produtoId FK "Referência do produto"
-int quantidade
-float subtotal
+    string id PK
+    string vendaId FK
+    string produtoId FK
+    int quantidade
+    float subtotal
 }
 
 FORNECEDOR {
-string id PK
-string nome
-string cep
-string endereco
+    string id PK
+    string nome
+    string cep
+    string endereco
 }
-```mermaid
+```
 
-2. Dicionário de Dados
+---
 
-Breve explicação das tabelas principais:
+## 2. Dicionário de Dados
 
-Produtos: Responsável por armazenar os itens disponíveis no estoque.
-id: Identificador único gerado automaticamente pelo JSON Server.
-nome: Nome do produto.
-preco: Valor unitário do produto.
-quantidade: Quantidade disponível em estoque.
-Vendas: Representa uma venda realizada no sistema.
-id: Identificador único da venda.
-data: Data da venda no formato ISO (YYYY-MM-DD).
-total: Valor total da venda.
-Itens da Venda: Registra os produtos vendidos em cada venda.
-id: Identificador único do item.
-vendaId: Chave estrangeira que vincula o item à venda.
-produtoId: Chave estrangeira que vincula ao produto.
-quantidade: Quantidade vendida.
-subtotal: Valor total do item (preço × quantidade).
-Fornecedores: Armazena dados dos fornecedores.
-id: Identificador único.
-nome: Nome do fornecedor.
-cep: CEP utilizado para consulta.
-endereco: Endereço obtido via API (ViaCEP).
-3. Regras de Negócio Técnicas
-Ao registrar uma venda:
-O sistema deve verificar se há estoque suficiente.
-O sistema deve atualizar automaticamente a quantidade do produto.
-O valor total da venda deve ser calculado automaticamente.
-O sistema deve impedir:
-Cadastro de produtos com preço inválido.
-Venda de produtos com estoque insuficiente.
-Integração externa:
-O sistema deve utilizar a API ViaCEP para preencher automaticamente o endereço do fornecedor a partir do CEP.
-Persistência:
-Dados armazenados no localStorage.
-Dados armazenados na API Fake (JSON Server).
-4. Rotas da API (JSON Server)
+- Produtos: Armazena os itens disponíveis no estoque.
+- Vendas: Representa uma venda realizada.
+- Itens da Venda: Relaciona produtos com vendas.
+- Fornecedores: Armazena dados dos fornecedores.
 
-A aplicação consome uma API local simulada pelo JSON Server. Abaixo os principais endpoints:
+---
 
-Produtos
-GET /produtos - Retorna a lista de produtos.
-POST /produtos - Cadastra um novo produto.
-PUT /produtos/:id - Atualiza um produto existente.
-DELETE /produtos/:id - Remove um produto.
-Vendas
-GET /vendas - Retorna a lista de vendas.
-POST /vendas - Registra uma nova venda.
-Itens da Venda
-GET /venda_itens - Retorna os itens das vendas.
-POST /venda_itens - Cadastra um item de venda.
-Fornecedores
-GET /fornecedores - Retorna a lista de fornecedores.
-POST /fornecedores - Cadastra um fornecedor.
-5. Estrutura do Banco de Dados (db.json)
+## 3. Regras de Negócio Técnicas
 
-Esta é a representação em formato JSON do banco de dados simulado:
+- Verificar estoque antes da venda
+- Atualizar quantidade automaticamente
+- Calcular total automaticamente
+- Impedir venda sem estoque
 
+---
+
+## 4. Rotas da API (JSON Server)
+
+- GET /produtos
+- POST /produtos
+- PUT /produtos/:id
+- DELETE /produtos/:id
+
+- GET /vendas
+- POST /vendas
+
+- GET /venda_itens
+- POST /venda_itens
+
+- GET /fornecedores
+- POST /fornecedores
+
+---
+
+## 5. Estrutura do Banco de Dados (db.json)
+
+```json
 {
   "produtos": [
     {
@@ -135,4 +115,4 @@ Esta é a representação em formato JSON do banco de dados simulado:
     }
   ]
 }
-````
+```
