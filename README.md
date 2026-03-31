@@ -32,7 +32,7 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 ## 💻 Tecnologias e Dependências
 
-- **Framework CSS:** Bootstrap  
+- **Framework CSS:** Bootstrap
 - **JavaScript:**
   - **jQuery** - Manipulação do DOM e interatividade.
   - **JSON Server** - Simulação de API REST.
@@ -83,7 +83,3 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 - [ ] ID 24 - Integração com API pública (ViaCEP).
 
 ---
-
-## 🚀 Manual de execução
-
-- Clonar o repositório:
