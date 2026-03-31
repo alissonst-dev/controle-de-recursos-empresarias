@@ -8,7 +8,7 @@ Este documento descreve a arquitetura técnica, o modelo de dados e os contratos
 
 Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa a estrutura do banco de dados (`db.json`) e como as entidades se relacionam.
 
-```mermaid
+````mermaid
 erDiagram
 PRODUTO ||--o{ VENDA_ITEM : "compõe"
 VENDA ||--o{ VENDA_ITEM : "contém"
@@ -40,6 +40,7 @@ string nome
 string cep
 string endereco
 }
+```mermaid
 
 2. Dicionário de Dados
 
@@ -134,3 +135,4 @@ Esta é a representação em formato JSON do banco de dados simulado:
     }
   ]
 }
+````
