@@ -40,5 +40,5 @@ A aplicação seguirá o modelo de consumo assíncrono de dados para garantir fl
 Três componentes projetados no Figma que serão implementados via Bootstrap:
 
 1.  **Navbar/Sidebar Lateral:** Implementada com classes de navegação vertical do Bootstrap, utilizando colapso para visualização mobile.
-2.  **Cards de Indicadores (Dashboard):** Utilização do componente `.card` com variações de cores de borda para destacar status de estoque (Estável, Alerta, Crítico).
+2.  **Cards de Indicadores (Dashboard):** Utilização do componente `.card` com variações de cores de borda para destacar status de estoque (Estável, Alerta, Crítico).git
 3.  **Modal de Edição/Cadastro:** O formulário de "Editar Produto" e "Novo Produto" utilizará o componente `.modal` do framework para interação sem troca de página.

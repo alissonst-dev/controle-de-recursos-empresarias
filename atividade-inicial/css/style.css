@@ -1,0 +1,16 @@
+body {
+  font-family: "Inter", sans-serif;
+}
+#bg-menu {
+  background-color: #1e1e2e !important;
+}
+
+#menu-principal a,
+#menu-principal {
+  color: #94a3b8 !important;
+}
+#linha-menu {
+  height: 1px;
+  width: 17.5rem;
+  background-color: #e5e7eb;
+}
