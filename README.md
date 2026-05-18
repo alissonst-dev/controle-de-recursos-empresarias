@@ -1,4 +1,4 @@
-# controle-de-estoque-web aa
+# controle-de-estoque-web
 
 ### **Autor:** Alisson Santos
 
