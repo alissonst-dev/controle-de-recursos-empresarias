@@ -13,15 +13,16 @@
 </head>
 
 <body>
-  <nav id="bg-menu" class="navbar navbar-dark bg-dark d-lg-none fixed-top">
+
+  <nav id="bg-menu-mobile" class="navbar navbar-dark bg-dark d-lg-none fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="../img/LOGO.svg" alt="logo"></a>
+      <a class="navbar-brand" href="#"><img id="logo-principal" src="../img/LOGO.svg" alt="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: #1e1e2e;">
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
         <div class="offcanvas-header">
-          <a href="#"><img src="../img/LOGO.svg" alt="logo"></a>
+          <a href="#"><img src="../img/LOGO.svg" alt="Logo" width="120" height="40"></a>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div id="menu-principal" class="offcanvas-body">
@@ -43,25 +44,22 @@
       </div>
     </div>
   </nav>
-  <aside id="bg-menu" class="d-none d-lg-flex flex-column text-white vh-100 position-fixed" style="width: 20rem;">
-    <a class="navbar-brand px-3 py-3" href="#"> <img src="../img/LOGO.svg" alt="logo"></a>
-    <nav id="menu-principal" class="nav flex-column px-3 gap-1">
+
+  <aside id="bg-menu" class="d-none d-lg-flex flex-column text-white vh-100 position-fixed">
+    <a id="logo-principal" class="px-3 py-3 d-flex justify-content-center" href="#"><img src="../img/LOGO.svg" alt="logo"></a>
+    <nav id="menu-principal-desktop" class="nav flex-column px-3 gap-1">
       <span id="linha-menu" class="bc-tertiary-color"></span>
-      <p class="m-0" style="padding-bottom: 1.25rem; padding-top: 1.25rem;">MENU PRINCIPAL</p>
-      <a class="nav-link d-flex align-items-center" href="#" style=" padding: 1rem  0 1rem 1.5rem;"><img src="../img/icones/home.svg" alt="" style="width: 1.1875rem; height: 1.1875rem; margin-right: 0.5rem; "> Dashboard</a>
-      <a class="nav-link d-flex align-items-center" href="./produtos.html" style=" padding: 1rem  0 1rem 1.5rem;"><img src="../img/icones/caixa_icone.svg" alt="" style="width: 1.1875rem; height: 1.1875rem; margin-right: 0.5rem;"> Produtos</a>
-      <a class="nav-link d-flex align-items-center" href="#" style=" padding: 1rem  0 1rem 1.5rem;"><img src="../img/icones/request_quote.svg" alt="" style="width: 1.1875rem; height: 1.1875rem; margin-right: 0.5rem;"> Fornecedores</a>
-      <a class="nav-link d-flex align-items-center" href="#" style="padding: 1rem 0 1rem 1.5rem;"><img src="../img/icones/caminhao_icone.svg" alt="" style="width: 1.1875rem; height: 1.1875rem; margin-right: 0.5rem;"> Movimentações</a>
+      <p id="menu-heading" class="m-0">MENU PRINCIPAL</p>
+      <a class="nav-link d-flex align-items-center" href="./index.html"><img class="menu-icon" src="../img/icones/home.svg" alt="" aria-hidden="true" width="19" height="19"> Dashboard</a>
+      <a class="nav-link d-flex align-items-center" href="./produtos.html"><img class="menu-icon" src="../img/icones/caixa_icone.svg" alt="" aria-hidden="true" width="19" height="19"> Produtos</a>
+      <a class="nav-link d-flex align-items-center" href="#"><img class="menu-icon" src="../img/icones/request_quote.svg" alt="" aria-hidden="true" width="19" height="19"> Fornecedores</a>
+      <a class="nav-link d-flex align-items-center" href="#"><img class="menu-icon" src="../img/icones/caminhao_icone.svg" alt="" aria-hidden="true" width="19" height="19"> Movimentações</a>
     </nav>
   </aside>
-  <main class="pt-4" style="margin-left: 20rem;">
-    <!-- conteúdo principal -->
+
+  <main class="pt-5 px-3 pt-lg-4 px-lg-4 bg-light min-vh-100">
   </main>
-
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-
   <script src="./js/script.js"></script>
 </body>
 
