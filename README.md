@@ -20,7 +20,7 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 ## 🎨 Design
 
 - [🎨 Design System](./docs/design-system.md) - Identidade visual da aplicação.
-- [🖼️ Protótipo no Figma](#) - Telas da aplicação (adicionar link futuramente).
+- [🖼️ Protótipo no Figma](https://www.figma.com/design/iFHHTdc5GD96uNcmtKHcnZ/meu-projeto---controle-estoque?node-id=0-1&t=Qn7QcL6eDclx4Xqp-1) - Telas da aplicação
 
 ---
 
@@ -45,14 +45,14 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 #### RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos.
 
-- [ ] ID 01 - Prototipa interfaces adaptáveis para mobile e desktop.
-- [ ] ID 02 - Implementa layout responsivo com Framework CSS.
+- [X] ID 01 - Prototipa interfaces adaptáveis para mobile e desktop.
+- [X] ID 02 - Implementa layout responsivo com Framework CSS.
 - [ ] ID 03 - Implementa layout responsivo com CSS puro.
 - [ ] ID 04 - Utiliza componentes do Framework CSS.
-- [ ] ID 05 - Utiliza unidades relativas (vw, vh, %, em, rem).
-- [ ] ID 06 - Aplica Design System consistente.
+- [X] ID 05 - Utiliza unidades relativas (vw, vh, %, em, rem).
+- [X] ID 06 - Aplica Design System consistente.
 - [ ] ID 07 - Utiliza Sass (SCSS).
-- [ ] ID 08 - Tipografia responsiva.
+- [X] ID 08 - Tipografia responsiva.
 - [ ] ID 09 - Responsividade de imagens.
 - [ ] ID 10 - Otimização de imagens.
 
@@ -65,11 +65,11 @@ Para entender as regras de negócio, o escopo e a arquitetura técnica da aplica
 
 #### RA3 - Ferramentas e Organização
 
-- [ ] ID 15 - Uso de Node.js e NPM.
-- [ ] ID 16 - Versionamento com Git/GitHub.
-- [ ] ID 17 - README padronizado.
+- [X] ID 15 - Uso de Node.js e NPM.
+- [X] ID 16 - Versionamento com Git/GitHub.
+- [X] ID 17 - README padronizado.
 - [ ] ID 18 - Organização modular do projeto.
-- [ ] ID 19 - Uso de ESLint/Prettier.
+- [X] ID 19 - Uso de ESLint/Prettier.
 
 #### RA4 - JavaScript e Interatividade
 
