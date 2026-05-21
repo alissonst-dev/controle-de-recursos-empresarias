@@ -1,116 +1,110 @@
-# Inventario
+# inventario
 
-Autor: Alisson Santos
+### Autor: Alisson Santos
 
 O Inventario é uma aplicação web responsiva desenvolvida para gerenciamento de estoque empresarial, permitindo o cadastro de produtos, fornecedores e controle de movimentações de entrada e saída.
 
 O sistema foi desenvolvido com foco em organização, responsividade e usabilidade, oferecendo uma interface moderna inspirada em dashboards administrativos.
 
-O frontend da aplicação foi desenvolvido utilizando HTML, CSS, Bootstrap e JavaScript. A persistência de dados é simulada através de uma API Fake utilizando JSON Server.
+O frontend da aplicação é desenvolvido com HTML, CSS e JavaScript, utilizando Bootstrap para responsividade e componentes visuais. A persistência de dados é simulada através de uma API Fake utilizando JSON Server.
 
 ---
 
-# 📚 Documentação do Projeto
+## 📚 Documentação do Projeto
 
 Para entender as regras de negócio, arquitetura e funcionamento da aplicação, consulte os documentos abaixo:
 
-- 📄 Product Requirements Document (PRD)
-- 🛠️ Especificação Técnica (Tech Spec)
-- 🎨 Software Design Document (SDD)
+- [📄 Product Requirements Document (PRD)](./docs/prd.md) - Visão geral, atores e histórias de usuário.
+- [🛠️ Especificação Técnica (Tech Spec)](./docs/spec.md) - Modelo de dados, entidades e rotas da API.
+- [🎨 Software Design Document (SDD)](./docs/sdd.md) - Arquitetura visual e estrutura da interface.
 
 ---
 
-# 🎨 Design
+## 🎨 Design
 
-- 🎨 Design System - Identidade visual do sistema
-- 🖼️ Protótipo no Figma - Interface e fluxo das telas
-- 🌐 Site em Produção - GitHub Pages
-
----
-
-# 💻 Tecnologias e Dependências
-
-## Front-end
-
-```txt
-HTML5
-CSS3
-JavaScript ES6+
-Bootstrap v5.3
-```
+- [🎨 Design System](./docs/design-system.md) - Identidade visual da aplicação.
+- [🖼️ Protótipo no Figma](#) - Telas da aplicação.
+- [🌐 GitHub Pages](#) - Deploy do projeto.
 
 ---
 
-## Bibliotecas JavaScript
+## 💻 Tecnologias e Dependências
 
-```txt
-jQuery
-jQuery Mask Plugin
-```
+### Front-end
 
----
-
-## Persistência e APIs
-
-```txt
-JSON Server
-ViaCEP API
-```
+- HTML5
+- CSS3
+- JavaScript ES6+
+- Bootstrap v5.3
 
 ---
 
-# ✅ Checklist | Indicadores de Desempenho (ID)
+### Bibliotecas JavaScript
 
-## RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos.
+- jQuery
+- jQuery Mask Plugin
 
-- [x] ID 01 - Prototipa interfaces adaptáveis para mobile e desktop no Figma.
-- [x] ID 02 - Implementa layout responsivo utilizando Bootstrap.
-- [x] ID 03 - Implementa layout responsivo utilizando CSS Grid e Flexbox.
-- [x] ID 04 - Utiliza componentes Bootstrap como Modal, Cards e Offcanvas.
-- [x] ID 05 - Utiliza unidades relativas (`rem`, `%`, `vh`).
+---
+
+### Persistência e APIs
+
+- JSON Server
+- ViaCEP API
+
+---
+
+## ✅ Checklist | Indicadores de Desempenho (ID) dos Resultados de Aprendizagem (RA)
+
+### RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos.
+
+- [x] ID 01 - Prototipa interfaces adaptáveis para mobile e desktop.
+- [x] ID 02 - Implementa layout responsivo com Framework CSS.
+- [x] ID 03 - Implementa layout responsivo com CSS Grid e Flexbox.
+- [x] ID 04 - Utiliza componentes do Framework CSS.
+- [x] ID 05 - Utiliza unidades relativas (vw, vh, %, em, rem).
 - [x] ID 06 - Aplica Design System consistente.
 - [ ] ID 07 - Utiliza Sass (SCSS).
 - [x] ID 08 - Aplica tipografia responsiva.
-- [x] ID 09 - Utiliza responsividade de imagens.
-- [ ] ID 10 - Otimiza imagens com formatos modernos.
+- [] ID 09 - Responsividade de imagens.
+- [ ] ID 10 - Otimização de imagens.
 
 ---
 
-## RA2 - Realizar tratamento de formulários e aplicar validações customizadas.
+### RA2 - Formulários e Validação
 
-- [x] ID 11 - Implementa validações HTML nativas.
-- [ ] ID 12 - Utiliza expressões regulares (REGEX).
-- [x] ID 13 - Utiliza elementos de seleção em formulários.
-- [] ID 14 - Utiliza localStorage/sessionStorage.
-
----
-
-## RA3 - Aplicar ferramentas para otimização do desenvolvimento web.
-
-- [x] ID 15 - Configura ambiente com Node.js e NPM.
-- [x] ID 16 - Utiliza Git e GitHub.
-- [x] ID 17 - Mantém README padronizado.
-- [x] ID 18 - Organiza arquivos modularmente.
-- [ ] ID 19 - Configura ESLint e Prettier.
+- [x] ID 11 - Validação HTML nativa.
+- [ ] ID 12 - Validação com REGEX.
+- [] ID 13 - Uso de select, checkbox e radio.
+- [] ID 14 - Uso de Web Storage.
 
 ---
 
-## RA4 - Aplicar bibliotecas JavaScript para interatividade.
+### RA3 - Ferramentas e Organização
 
-- [] ID 20 - Utiliza jQuery para manipulação do DOM.
-- [] ID 21 - Integra jQuery Mask Plugin.
-
----
-
-## RA5 - Efetuar requisições assíncronas para APIs.
-
-- [] ID 22 - Realiza requisições para JSON Server.
-- [] ID 23 - Exibe dados dinamicamente via API Fake.
-- [] ID 24 - Integra API pública ViaCEP.
+- [x] ID 15 - Uso de Node.js e NPM.
+- [x] ID 16 - Versionamento com Git/GitHub.
+- [x] ID 17 - README padronizado.
+- [x] ID 18 - Organização modular do projeto.
+- [ ] ID 19 - Uso de ESLint/Prettier.
 
 ---
 
-# 🚀 Funcionalidades
+### RA4 - JavaScript e Interatividade
+
+- [] ID 20 - Uso de jQuery.
+- [] ID 21 - Plugin jQuery.
+
+---
+
+### RA5 - APIs
+
+- [] ID 22 - Requisições para API Fake (JSON Server).
+- [] ID 23 - Exibição dinâmica de dados da API.
+- [] ID 24 - Integração com API pública (ViaCEP).
+
+---
+
+## 🚀 Funcionalidades
 
 ```txt
 Cadastro de produtos
@@ -125,7 +119,7 @@ Responsividade para mobile e desktop
 
 ---
 
-# 🧱 Estrutura do Projeto
+## 🧱 Estrutura do Projeto
 
 ```txt
 inventario/
@@ -133,7 +127,7 @@ inventario/
 ├── css/
 ├── js/
 ├── img/
-├── pages/
+├── docs/
 ├── db.json
 ├── routes.json
 ├── package.json
@@ -142,9 +136,9 @@ inventario/
 
 ---
 
-# 🚀 Manual de Execução
+## 🚀 Manual de Execução
 
-## 1. Clonar o repositório
+### 1. Clonar o repositório
 
 ```bash
 git clone URL_DO_REPOSITORIO
@@ -152,13 +146,13 @@ git clone URL_DO_REPOSITORIO
 
 ---
 
-## 2. Abrir o projeto
+### 2. Abrir o projeto
 
 Abra o projeto no Visual Studio Code.
 
 ---
 
-## 3. Instalar dependências
+### 3. Instalar dependências
 
 ```bash
 npm install
@@ -166,15 +160,15 @@ npm install
 
 ---
 
-## 4. Executar o JSON Server
+### 4. Executar o JSON Server
 
-### Via script
+#### Via script
 
 ```bash
 npm run json:server
 ```
 
-### Ou manualmente
+#### Ou manualmente
 
 ```bash
 json-server --watch db.json --routes routes.json
@@ -182,16 +176,17 @@ json-server --watch db.json --routes routes.json
 
 ---
 
-## 5. Executar o Front-end
+### 5. Executar o Front-end
 
 Abra o arquivo `index.html` utilizando:
+
 - Live Server
 - Navegador
 - Extensão do VSCode
 
 ---
 
-# 🌐 API Fake
+## 🌐 API Fake
 
 Por padrão, o JSON Server executa em:
 
@@ -209,14 +204,16 @@ Rotas disponíveis:
 
 ---
 
-# 📱 Responsividade
+## 📱 Responsividade
 
 O sistema foi desenvolvido para:
+
 - Desktop
 - Tablets
 - Smartphones
 
 Utilizando:
+
 - Bootstrap Grid
 - Flexbox
 - CSS Grid
@@ -224,15 +221,15 @@ Utilizando:
 
 ---
 
-# 🎯 Objetivo do Projeto
+## 🎯 Objetivo do Projeto
 
-O Inventario foi desenvolvido com o objetivo de fornecer uma solução simples para gerenciamento empresarial, permitindo:
+O Inventario foi desenvolvido para fornecer uma solução simples e moderna de gerenciamento empresarial, permitindo:
 
 ```txt
 Controle de estoque
 Cadastro de produtos
 Cadastro de fornecedores
 Controle de movimentações
-Organização empresarial
 Monitoramento de estoque
+Organização empresarial
 ```
