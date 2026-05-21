@@ -1,4 +1,4 @@
-# Especificação Técnica (Tech Spec) - Sistema de Recursos Empresariais
+# 🛠️ Especificação Técnica (Tech Spec) - Sistema de Recursos Empresariais
 
 Este documento descreve a arquitetura técnica, o modelo de dados e os contratos de API da aplicação, que tem como objetivo gerenciar recursos empresariais como produtos, estoque, fornecedores e movimentações de entrada e saída.
 
@@ -15,8 +15,14 @@ PRODUTO ||--o{ MOVIMENTACAO : movimenta
 FORNECEDOR {
     string id PK
     string nome
+    string cnpj
+    string categoriaProdutos
+    string email
+    string telefone
     string cep
     string endereco
+    string cidade
+    string estado
 }
 
 PRODUTO {
@@ -34,8 +40,9 @@ PRODUTO {
 MOVIMENTACAO {
     string id PK
     string produtoId FK
-    string tipo
+    string produtoNome
     int quantidade
+    string tipo
     string data
 }
 ```
@@ -94,6 +101,22 @@ Campo: nome
 Tipo: string  
 Descrição: Nome do fornecedor
 
+Campo: cnpj  
+Tipo: string  
+Descrição: CNPJ do fornecedor
+
+Campo: categoriaProdutos  
+Tipo: string  
+Descrição: Categoria de produtos fornecidos
+
+Campo: email  
+Tipo: string  
+Descrição: Email do fornecedor
+
+Campo: telefone  
+Tipo: string  
+Descrição: Telefone do fornecedor
+
 Campo: cep  
 Tipo: string  
 Descrição: CEP do fornecedor
@@ -101,6 +124,14 @@ Descrição: CEP do fornecedor
 Campo: endereco  
 Tipo: string  
 Descrição: Endereço do fornecedor
+
+Campo: cidade  
+Tipo: string  
+Descrição: Cidade do fornecedor
+
+Campo: estado  
+Tipo: string  
+Descrição: Estado do fornecedor
 
 ---
 
@@ -112,15 +143,19 @@ Descrição: Identificador único da movimentação
 
 Campo: produtoId  
 Tipo: string  
-Descrição: Referência ao produto movimentado
+Descrição: Referência ao produto
 
-Campo: tipo  
+Campo: produtoNome  
 Tipo: string  
-Descrição: Tipo da movimentação (entrada ou saida)
+Descrição: Nome do produto movimentado
 
 Campo: quantidade  
 Tipo: int  
 Descrição: Quantidade movimentada
+
+Campo: tipo  
+Tipo: string  
+Descrição: Tipo da movimentação (entrada ou saida)
 
 Campo: data  
 Tipo: string  
@@ -224,8 +259,8 @@ DELETE /fornecedores/:id
       "descricao": "Notebook com 8GB RAM e SSD 1TB",
       "categoria": "Informática",
       "fornecedorId": "1",
-      "precoCusto": 2800.0,
-      "precoVenda": 3500.0,
+      "precoCusto": 2800.00,
+      "precoVenda": 3500.00,
       "quantidade": 10,
       "quantidadeMinima": 2
     }
@@ -234,9 +269,15 @@ DELETE /fornecedores/:id
   "fornecedores": [
     {
       "id": "1",
-      "nome": "Fornecedor Exemplo",
+      "nome": "Tech Distribuidora",
+      "cnpj": "00.000.000/0001-00",
+      "categoriaProdutos": "Informática",
+      "email": "contato@tech.com",
+      "telefone": "(42) 99999-9999",
       "cep": "85000000",
-      "endereco": "Rua Exemplo, Paraná"
+      "endereco": "Rua Exemplo",
+      "cidade": "Guarapuava",
+      "estado": "PR"
     }
   ],
 
@@ -244,8 +285,9 @@ DELETE /fornecedores/:id
     {
       "id": "1",
       "produtoId": "1",
-      "tipo": "saida",
+      "produtoNome": "Notebook Dell Inspiron 15",
       "quantidade": 2,
+      "tipo": "saida",
       "data": "2026-05-21"
     }
   ]
