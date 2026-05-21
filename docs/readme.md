@@ -23,7 +23,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 ## 🎨 Design
 
 - [🎨 Design System](./docs/design-system.md) - Identidade visual da aplicação.
-- [🖼️ Protótipo no Figma](#) - Telas da aplicação.
+- [🖼️ Protótipo no Figma](https://www.figma.com/design/iFHHTdc5GD96uNcmtKHcnZ/meu-projeto---controle-estoque?node-id=0-1&t=xUYR4AGpdfW2OOF2-1) - Telas da aplicação - link.
 - [🌐 GitHub Pages](#) - Deploy do projeto.
 
 ---
