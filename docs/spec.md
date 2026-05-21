@@ -1,4 +1,4 @@
-# 🛠️ Especificação Técnica (Tech Spec) - Sistema de Recursos Empresariais
+# Especificação Técnica (Tech Spec) - Sistema de Recursos Empresariais
 
 Este documento descreve a arquitetura técnica, o modelo de dados e os contratos de API da aplicação, que tem como objetivo gerenciar recursos empresariais como produtos, estoque, fornecedores e movimentações de entrada e saída.
 
