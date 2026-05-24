@@ -1,4 +1,4 @@
-# 📄 Product Requirements Document (PRD) - Inventario
+# Product Requirements Document (PRD) - Inventario
 
 ---
 
@@ -7,6 +7,7 @@
 O Inventario é uma aplicação web responsiva desenvolvida para auxiliar no gerenciamento de estoque de pequenos negócios.
 
 O sistema permite:
+
 - Cadastro de produtos
 - Cadastro de fornecedores
 - Controle de estoque
@@ -22,6 +23,7 @@ O objetivo da aplicação é substituir controles manuais e melhorar a organiza�
 Toda movimentação realizada deve atualizar automaticamente o estoque do produto.
 
 Regras:
+
 - Movimentações de entrada aumentam o estoque
 - Movimentações de saída reduzem o estoque
 - O sistema deve impedir saídas sem estoque suficiente
@@ -33,6 +35,7 @@ Regras:
 ## Administrador
 
 Usuário responsável por:
+
 - Cadastrar produtos
 - Cadastrar fornecedores
 - Realizar movimentações
@@ -44,6 +47,7 @@ Usuário responsável por:
 ## Sistema
 
 Responsável por:
+
 - Validar dados
 - Atualizar estoque automaticamente
 - Garantir consistência das informações
@@ -57,7 +61,7 @@ As funcionalidades do sistema estão organizadas em épicos.
 
 ---
 
-# 📦 Épico 1: Gestão de Produtos
+# Épico 1: Gestão de Produtos
 
 ## US01 - Cadastro de Produto
 
@@ -90,7 +94,7 @@ Como um Administrador, quero excluir produtos do sistema, para remover itens que
 
 ---
 
-# 🚚 Épico 2: Gestão de Fornecedores
+# Épico 2: Gestão de Fornecedores
 
 ## US05 - Cadastro de Fornecedor
 
@@ -110,7 +114,7 @@ Como um Administrador, quero visualizar os fornecedores cadastrados, para gerenc
 
 ---
 
-# 📥📤 Épico 3: Movimentações de Estoque
+# Épico 3: Movimentações de Estoque
 
 ## US07 - Registrar Movimentação
 
@@ -132,13 +136,14 @@ Como um Administrador, quero visualizar o histórico de movimentações, para ac
 
 ---
 
-# 📊 Épico 4: Visualização e Controle
+# Épico 4: Visualização e Controle
 
 ## US09 - Dashboard
 
 Como um Administrador, quero visualizar indicadores rápidos do sistema, para acompanhar a situação do estoque.
 
 Indicadores:
+
 - Total de produtos
 - Produtos em estoque
 - Produtos com estoque baixo
@@ -152,7 +157,7 @@ Como um Administrador, quero que os dados permaneçam salvos após recarregar a 
 
 ---
 
-# 🌐 Épico 5: Integrações e Usabilidade
+# Épico 5: Integrações e Usabilidade
 
 ## US11 - Consulta de CEP
 

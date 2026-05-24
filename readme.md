@@ -10,25 +10,25 @@ O frontend da aplicação é desenvolvido com HTML, CSS e JavaScript, utilizando
 
 ---
 
-## 📚 Documentação do Projeto
+## Documentação do Projeto
 
 Para entender as regras de negócio, arquitetura e funcionamento da aplicação, consulte os documentos abaixo:
 
-- [📄 Product Requirements Document (PRD)](./docs/prd.md) - Visão geral, atores e histórias de usuário.
-- [🛠️ Especificação Técnica (Tech Spec)](./docs/spec.md) - Modelo de dados, entidades e rotas da API.
-- [🎨 Software Design Document (SDD)](./docs/sdd.md) - Arquitetura visual e estrutura da interface.
+- [Product Requirements Document (PRD)](./docs/prd.md) - Visão geral, atores e histórias de usuário.
+- [Especificação Técnica (Tech Spec)](./docs/spec.md) - Modelo de dados, entidades e rotas da API.
+- [Software Design Document (SDD)](./docs/sdd.md) - Arquitetura visual e estrutura da interface.
 
 ---
 
-## 🎨 Design
+## Design
 
-- [🎨 Design System](./docs/design-system.md) - Identidade visual da aplicação.
-- [🖼️ Protótipo no Figma](https://www.figma.com/design/iFHHTdc5GD96uNcmtKHcnZ/meu-projeto---controle-estoque?node-id=0-1&t=xUYR4AGpdfW2OOF2-1) - Telas da aplicação - link.
-- [🌐 GitHub Pages](#) - Deploy do projeto.
+- [Design System](./docs/design-system.md) - Identidade visual da aplicação.
+- [Protótipo no Figma](https://www.figma.com/design/iFHHTdc5GD96uNcmtKHcnZ/meu-projeto---controle-estoque?node-id=0-1&t=xUYR4AGpdfW2OOF2-1) - Telas da aplicação - link.
+- [ GitHub Pages](#) - Deploy do projeto.
 
 ---
 
-## 💻 Tecnologias e Dependências
+## Tecnologias e Dependências
 
 ### Front-end
 
@@ -53,7 +53,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 ---
 
-## ✅ Checklist | Indicadores de Desempenho (ID) dos Resultados de Aprendizagem (RA)
+## Checklist | Indicadores de Desempenho (ID) dos Resultados de Aprendizagem (RA)
 
 ### RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos.
 
@@ -104,7 +104,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 ---
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 ```txt
 Cadastro de produtos
@@ -119,7 +119,7 @@ Responsividade para mobile e desktop
 
 ---
 
-## 🧱 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```txt
 inventario/
@@ -136,7 +136,7 @@ inventario/
 
 ---
 
-## 🚀 Manual de Execução
+## Manual de Execução
 
 ### 1. Clonar o repositório
 
@@ -186,7 +186,7 @@ Abra o arquivo `index.html` utilizando:
 
 ---
 
-## 🌐 API Fake
+## API Fake
 
 Por padrão, o JSON Server executa em:
 
@@ -204,7 +204,7 @@ Rotas disponíveis:
 
 ---
 
-## 📱 Responsividade
+## Responsividade
 
 O sistema foi desenvolvido para:
 
@@ -221,7 +221,7 @@ Utilizando:
 
 ---
 
-## 🎯 Objetivo do Projeto
+## Objetivo do Projeto
 
 O Inventario foi desenvolvido para fornecer uma solução simples e moderna de gerenciamento empresarial, permitindo:
 
