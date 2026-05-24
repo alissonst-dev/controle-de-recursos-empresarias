@@ -38,12 +38,9 @@ PRODUTO {
 }
 
 MOVIMENTACAO {
-    string id PK
-    string produtoId FK
+    string tipoMovimentacao FK
     string produtoNome
     int quantidade
-    string tipo
-    string data
 }
 ```
 
