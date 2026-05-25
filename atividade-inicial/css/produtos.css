@@ -126,7 +126,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
   border-bottom: 0.0625rem solid #f1f5f9;
   background-color: #fff;
   border-radius: 0.75rem 0.75rem 0 0;
@@ -140,7 +140,7 @@ body {
 
 .meu-modal-body {
   padding: 1.5rem;
-  margin: 1.875rem 0.9375rem 1.875rem 0.9375rem;
+  margin: 1.5rem 0.9375rem 1.5rem 0.9375rem;
   background-color: #fff;
   border-radius: 0.75rem;
 }
@@ -231,7 +231,7 @@ body {
   display: flex;
   justify-content: flex-end;
   gap: 1.1rem;
-  padding: 1.875rem 0 1.875rem 0;
+  padding-top: 1.875rem;
 }
 
 .btn-cancelar,

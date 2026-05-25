@@ -1,0 +1,123 @@
+// 1. Mapeia o formulário do seu Modal de produtos
+const formProduto = document.getElementById('form-produto'); 
+
+// 2. Escuta o momento do envio (Submit)
+formProduto.addEventListener('submit', async (event) => {
+    // Evita o recarregamento padrão da página
+    event.preventDefault();
+
+    // 3. Pega os valores de todos os inputs do formulário do HTML
+    const nome = document.getElementById('input-nome').value;
+    const descricao = document.getElementById('input-descricao').value;
+    const categoria = document.getElementById('input-categoria').value;
+    const fornecedor = document.getElementById('input-fornecedor').value;
+    const precoCusto = document.getElementById('input-preco-custo').value;
+    const precoVenda = document.getElementById('input-preco-venda').value;
+    const quantidade = document.getElementById('input-qtd').value || 0; // Se vazio, vira 0
+
+    // 4. Junta tudo em um objeto completo seguindo o padrão do seu layout
+    const novoProduto = {
+        nome: nome,
+        descricao: descricao,
+        categoria: categoria,
+        fornecedor: fornecedor,
+        preco_custo: parseFloat(precoCusto),
+        preco_venda: parseFloat(precoVenda),
+        quantidade: parseInt(quantidade),
+        status: "Ativo" // Todo produto novo entra como Ativo por padrão
+    };
+
+    try {
+        // 5. Envia o JSON completo para o servidor Back-end
+        const resposta = await fetch('http://localhost:3000/api/produtos', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(novoProduto) 
+        });
+
+        if (resposta.ok) {
+            alert('Produto cadastrado com sucesso!');
+            
+            // Limpa os campos do formulário
+            formProduto.reset(); 
+
+            // Recarrega a página para você ver as mudanças estruturais futuras
+            window.location.reload();
+            
+        } else {
+            alert('Erro ao cadastrar o produto no servidor.');
+        }
+
+    } catch (error) {
+        console.error('Erro de conexão:', error);
+        alert('Não foi possível conectar ao servidor.');
+    }
+});
+
+// 1. Mapeia o corpo da tabela onde os produtos vão aparecer
+const tabelaProdutos = document.querySelector('#products-table tbody');
+
+// 2. Função que busca os produtos no Back-end e joga na tela
+async function carregarProdutos() {
+    try {
+        // Faz o pedido de busca para o servidor
+        const resposta = await fetch('http://localhost:3000/api/produtos');
+        const produtos = await resposta.json();
+
+        // Limpa a tabela para não duplicar os itens fixos do HTML
+        tabelaProdutos.innerHTML = '';
+
+        // Se não tiver nenhum produto cadastrado ainda
+        if (produtos.length === 0) {
+            tabelaProdutos.innerHTML = `
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                        Nenhum produto cadastrado no momento.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        // 3. Passa de produto em produto e cria a linha HTML dele
+        produtos.forEach(produto => {
+            const linha = document.createElement('tr');
+
+            linha.innerHTML = `
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="p-2 rounded bg-purple-light d-flex align-items-center justify-content-center">
+                      <img src="../img/icones/caixa_white_purple.svg" alt="" aria-hidden="true" width="48" height="48">
+                    </div>
+                    <span class="fw-semibold">${produto.nome}</span>
+                  </div>
+                </td>
+                <td class="text-left text-muted descricao-produto">${produto.descricao}</td>
+                <td>${produto.fornecedor || 'Não informado'}</td>
+                <td>${produto.categoria}</td>
+                <td class="fw-medium">R$ ${Number(produto.preco_venda).toFixed(2).replace('.', ',')}</td>
+                <td>
+                  <span class="bg-success-subtle text-success px-3 py-2 rounded fw-medium d-inline-block text-center" style="width: 85px;">
+                    ${produto.status}
+                  </span>
+                </td>
+                <td class="text-center">
+                  <button type="button" aria-label="Excluir produto" class="btn btn-link text-muted p-0">
+                    <img src="../img/icones/lixo_icone.svg" alt="" aria-hidden="true" width="24" height="24">
+                  </button>
+                </td>
+            `;
+
+            // Adiciona a linha criada dentro da tabela
+            tabelaProdutos.appendChild(linha);
+        });
+
+    } catch (error) {
+        console.error('Erro ao carregar tabela:', error);
+    }
+}
+
+// 4. Executa a função assim que a página terminar de carregar
+document.addEventListener('DOMContentLoaded', carregarProdutos);
