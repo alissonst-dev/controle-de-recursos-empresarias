@@ -53,87 +53,54 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 ---
 
-## Checklist | Indicadores de Desempenho (ID) dos Resultados de Aprendizagem (RA)
+## ✅ Checklist | Indicadores de Desempenho (ID) dos Resultados de Aprendizagem (RA)
 
 ### RA1 - Utilizar Frameworks CSS para estilização de elementos HTML e criação de layouts responsivos.
 
-- [x] ID 01 - Prototipa interfaces adaptáveis para mobile e desktop.
-- [x] ID 02 - Implementa layout responsivo com Framework CSS.
-- [x] ID 03 - Implementa layout responsivo com CSS Grid e Flexbox.
-- [x] ID 04 - Utiliza componentes do Framework CSS.
-- [x] ID 05 - Utiliza unidades relativas (vw, vh, %, em, rem).
-- [x] ID 06 - Aplica Design System consistente.
-- [ ] ID 07 - Utiliza Sass (SCSS).
-- [x] ID 08 - Aplica tipografia responsiva.
-- [] ID 09 - Responsividade de imagens.
-- [ ] ID 10 - Otimização de imagens.
+- [x] ID 01 - Prototipa interfaces adaptáveis para no mínimo os tamanhos de tela mobile e desktop, usando ferramentas de design tradicionais (Figma, Quant UX ou Sketch) ou IA (Stitch).
+- [x] ID 02 - Implementa layout responsivo com Framework CSS (Bootstrap, Materialize, Tailwind + DaisyUI) usando Flexbox ou Grid do próprio framework.
+- [x] ID 03 - Implementa layout responsivo com CSS puro, usando Flexbox ou Grid Layout.
+- [x] ID 04 - Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, carousel).
+- [x] ID 05 - Cria layout fluido usando unidades relativas (vw, vh, %, em, rem) no lugar de unidades fixas (px).
+- [x] ID 06 - Aplica um Design System consistente (cores, tipografia, padrões de componentes) em toda a aplicação.
+- [ ] ID 07 - Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
+- [x] ID 08 - Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (função clamp() + unidades relativas).
+- [ ] ID 09 - Aplica técnicas de responsividade de imagens usando CSS (object-fit, containers com unidades relativas).
+- [ ] ID 10 - Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (srcset, picture, ou parâmetros do Cloudinary).
 
 ---
 
-### RA2 - Formulários e Validação
+### RA2 - Realizar tratamento de formulários e aplicar validações customizadas no lado cliente.
 
-- [x] ID 11 - Validação HTML nativa.
-- [ ] ID 12 - Validação com REGEX.
-- [] ID 13 - Uso de select, checkbox e radio.
-- [] ID 14 - Uso de Web Storage.
-
----
-
-### RA3 - Ferramentas e Organização
-
-- [x] ID 15 - Uso de Node.js e NPM.
-- [x] ID 16 - Versionamento com Git/GitHub.
-- [x] ID 17 - README padronizado.
-- [x] ID 18 - Organização modular do projeto.
-- [ ] ID 19 - Uso de ESLint/Prettier.
+- [x] ID 11 - Implementa validação HTML nativa (campos obrigatórios, tipos, limites de caracteres) com mensagens de erro/sucesso no lado cliente.
+- [ ] ID 12 - Aplica expressões regulares (REGEX) para validações customizadas (e-mail, telefone, datas, etc.)
+- [ ] ID 13 - Utiliza elementos de seleção em formulários (checkbox, radio, select) para coleta de dados.
+- [ ] ID 14 - Implementa leitura e escrita no Web Storage (localStorage/sessionStorage) para persistir dados localmente.
 
 ---
 
-### RA4 - JavaScript e Interatividade
+### RA3 - Aplicar ferramentas para otimização do processo de desenvolvimento web.
 
-- [] ID 20 - Uso de jQuery.
-- [] ID 21 - Plugin jQuery.
-
----
-
-### RA5 - APIs
-
-- [] ID 22 - Requisições para API Fake (JSON Server).
-- [] ID 23 - Exibição dinâmica de dados da API.
-- [] ID 24 - Integração com API pública (ViaCEP).
+- [x] ID 15 - Configura ambiente com Node.js e NPM para gerenciamento de pacotes e dependências.
+- [x] ID 16 - Utiliza boas práticas de versionamento no Git/GitHub (branch main ou branches específicos, uso de .gitignore).
+- [x] ID 17 - Mantém um README.md padronizado, conforme template da disciplina, com checklist preenchido.
+- [x] ID 18 - Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido.
+- [ ] ID 19 - Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
 
 ---
 
-## Funcionalidades
+### RA4 - Aplicar bibliotecas de funções e componentes em JavaScript para aprimorar a interatividade de páginas web.
 
-```txt
-Cadastro de produtos
-Cadastro de fornecedores
-Controle de estoque
-Movimentações de entrada
-Movimentações de saída
-Dashboard administrativo
-Consulta automática de CEP
-Responsividade para mobile e desktop
-```
+- [ ] ID 20 - Utiliza jQuery para manipulação do DOM e interatividade (eventos, animações, manipulação de elementos)
+- [ ] ID 21 - Integra e configura um plugin jQuery relevante (ex.: jQuery Mask Plugin).
 
 ---
 
-## Estrutura do Projeto
+### RA5 - Efetuar requisições assíncronas para uma API fake e APIs públicas, permitindo a obtenção e manipulação de dados dinamicamente.
 
-```txt
-inventario/
-│
-├── css/
-├── js/
-├── img/
-├── docs/
-├── db.json
-├── routes.json
-├── package.json
-└── README.md
-```
-
+- [ ] ID 22 - Realiza requisições assíncronas para uma API fake (ex.: JSON Server) para persistir dados de um formulário.
+- [ ] ID 23 - Realiza requisições assíncronas para uma API fake para exibir dados na página.
+- [ ] ID 24 - Realiza requisições assíncronas para APIs públicas reais (OpenWeather, ViaCEP etc.), exibindo os dados e tratando erros.
 ---
 
 ## Manual de Execução
