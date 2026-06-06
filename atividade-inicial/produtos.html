@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Produtos</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +59,6 @@
 
   <main class="pt-5 px-3 pt-lg-4 px-lg-4 bg-light min-vh-100">
     <div class="container-fluid">
-
       <div id="stats-row" class="row g-3 mb-4">
         <div class="col-12 col-sm-6 col-xl-3">
           <div class="card shadow-sm border-0 p-3 h-100">
@@ -201,58 +200,56 @@
   <div class="modal fade" id="modalProduto" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content my-modal-custom">
-
         <div class="meu-modal-header">
           <h2>Adicionar Novo Produto</h2>
           <button type="button" class="btn-fechar-custom" data-bs-dismiss="modal"><img src="../img/icones/cancel.svg" alt="cancel"></button>
         </div>
-
         <div class="meu-modal-body">
           <form id="form-produto">
-  <div class="meu-form-grid">
+            <div class="meu-form-grid">
 
-    <div class="meu-grupo-input">
-      <label for="nomeProduto">Nome do Produto *</label>
-      <input id="input-nome" type="text" placeholder="Ex.: Notebook Dell Inspiron 15" required>
-    </div>
+              <div class="meu-grupo-input">
+                <label for="nomeProduto">Nome do Produto *</label>
+                <input id="input-nome" type="text" placeholder="Ex.: Notebook Dell Inspiron 15" required>
+              </div>
 
-    <div class="meu-grupo-input">
-      <label for="descricaoProduto">Descrição *</label>
-      <input id="input-descricao" type="text" placeholder="Ex.: 8gb ram 1000gb ssd" required>
-    </div>
+              <div class="meu-grupo-input">
+                <label for="descricaoProduto">Descrição *</label>
+                <input id="input-descricao" type="text" placeholder="Ex.: 8gb ram 1000gb ssd" required>
+              </div>
 
-    <div class="meu-grupo-input">
-      <label for="categoriaProduto">Categoria *</label>
-      <input id="input-categoria" type="text" placeholder="Ex.: Eletrônicos" required>
-    </div>
+              <div class="meu-grupo-input">
+                <label for="categoriaProduto">Categoria *</label>
+                <input id="input-categoria" type="text" placeholder="Ex.: Eletrônicos" required>
+              </div>
 
-    <div class="meu-grupo-input">
-      <label for="fornecedorProduto">Fornecedor</label>
-      <input id="input-fornecedor" type="text" placeholder="Ex.: Distribuidora Alfa">
-    </div>
+              <div class="meu-grupo-input">
+                <label for="fornecedorProduto">Fornecedor</label>
+                <input id="input-fornecedor" type="text" placeholder="Ex.: Distribuidora Alfa">
+              </div>
 
-    <div class="meu-grupo-input">
-      <label for="precoCusto">Preço de Custo *</label>
-      <input id="input-preco-custo" type="number" step="0.01" placeholder="R$ 0,00" required>
-    </div>
+              <div class="meu-grupo-input">
+                <label for="precoCusto">Preço de Custo *</label>
+                <input id="input-preco-custo" type="number" step="0.01" placeholder="R$ 0,00" required>
+              </div>
 
-    <div class="meu-grupo-input">
-      <label for="precoVenda">Preço de Venda *</label>
-      <input id="input-preco-venda" type="number" step="0.01" placeholder="R$ 0,00" required>
-    </div>
+              <div class="meu-grupo-input">
+                <label for="precoVenda">Preço de Venda *</label>
+                <input id="input-preco-venda" type="number" step="0.01" placeholder="R$ 0,00" required>
+              </div>
 
-    <div class="meu-grupo-input">
-      <label for="qtdInicial">Quantidade Inicial</label>
-      <input id="input-qtd" type="number" placeholder="0">
-    </div>
+              <div class="meu-grupo-input">
+                <label for="qtdInicial">Quantidade Inicial</label>
+                <input id="input-qtd" type="number" placeholder="0">
+              </div>
 
-    <div class="meu-grupo-input">
-      <label for="qtdMinima">Quantidade mínima</label>
-      <input id="input-qtd-minima" type="number" placeholder="0">
-    </div>
+              <div class="meu-grupo-input">
+                <label for="qtdMinima">Quantidade mínima</label>
+                <input id="input-qtd-minima" type="number" placeholder="0">
+              </div>
 
-  </div>
-</form>
+            </div>
+          </form>
           <div class="meu-modal-footer">
             <button id="form-produto" type="button" class="btn-cancelar" data-bs-dismiss="modal"> <img src="../img/icones/close.svg" alt="">Cancelar</button>
             <button type="submit" form="form-produto" class="btn-salvar"><img src="../img/icones/save.svg" alt="">Salvar Produto</button>
@@ -261,7 +258,7 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./js/script.js"></script>
 </body>
 
