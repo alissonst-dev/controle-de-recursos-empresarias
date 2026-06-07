@@ -6,7 +6,7 @@ O Inventario é uma aplicação web responsiva desenvolvida para gerenciamento d
 
 O sistema foi desenvolvido com foco em organização, responsividade e usabilidade, oferecendo uma interface moderna inspirada em dashboards administrativos.
 
-O frontend da aplicação é desenvolvido com HTML, CSS e JavaScript, utilizando Bootstrap para responsividade e componentes visuais. A persistência de dados é simulada através de uma API Fake utilizando JSON Server.
+O frontend da aplicação é desenvolvido com HTML, CSS e JavaScript, utilizando Bootstrap para responsividade e componentes visuais. A persistência de dados é simulada através de uma API local desenvolvida com Node.js e Express, utilizando um arquivo JSON como base de dados.
 
 ---
 
@@ -48,7 +48,9 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 ### Persistência e APIs
 
-- JSON Server
+- Node.js
+- Express
+- API local com arquivo JSON
 - ViaCEP API
 
 ---
@@ -63,9 +65,9 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 - [x] ID 04 - Utiliza componentes prontos de um Framework CSS (ex.: card, button) e componentes JavaScript do framework (ex.: modal, carousel).
 - [x] ID 05 - Cria layout fluido usando unidades relativas (vw, vh, %, em, rem) no lugar de unidades fixas (px).
 - [x] ID 06 - Aplica um Design System consistente (cores, tipografia, padrões de componentes) em toda a aplicação.
-- [ ] ID 07 - Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
+- [x] ID 07 - Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
 - [x] ID 08 - Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (função clamp() + unidades relativas).
-- [ ] ID 09 - Aplica técnicas de responsividade de imagens usando CSS (object-fit, containers com unidades relativas).
+- [x] ID 09 - Aplica técnicas de responsividade de imagens usando CSS (object-fit, containers com unidades relativas).
 - [ ] ID 10 - Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (srcset, picture, ou parâmetros do Cloudinary).
 
 ---
@@ -85,7 +87,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 - [x] ID 16 - Utiliza boas práticas de versionamento no Git/GitHub (branch main ou branches específicos, uso de .gitignore).
 - [x] ID 17 - Mantém um README.md padronizado, conforme template da disciplina, com checklist preenchido.
 - [x] ID 18 - Organiza arquivos do projeto de forma modular, seguindo padrão de exemplo fornecido.
-- [ ] ID 19 - Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
+- [x] ID 19 - Configura linters e formatadores (ESLint, Prettier) para manter qualidade e padronização do código.
 
 ---
 
@@ -101,6 +103,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 - [ ] ID 22 - Realiza requisições assíncronas para uma API fake (ex.: JSON Server) para persistir dados de um formulário.
 - [ ] ID 23 - Realiza requisições assíncronas para uma API fake para exibir dados na página.
 - [ ] ID 24 - Realiza requisições assíncronas para APIs públicas reais (OpenWeather, ViaCEP etc.), exibindo os dados e tratando erros.
+
 ---
 
 ## Manual de Execução
@@ -119,7 +122,7 @@ Abra o projeto no Visual Studio Code.
 
 ---
 
-### 3. Instalar dependências
+### 3. Instalar dependências do Front-end
 
 ```bash
 npm install
@@ -127,49 +130,47 @@ npm install
 
 ---
 
-### 4. Executar o JSON Server
+### 4. Instalar dependências do Back-end
 
-#### Via script
-
-```bash
-npm run json:server
-```
-
-#### Ou manualmente
+#### Acesse a pasta do servidor
 
 ```bash
-json-server --watch db.json --routes routes.json
+cd server
 ```
 
----
+#### Depois execute
 
-### 5. Executar o Front-end
+```bash
+npm install
+```
 
-Abra o arquivo `index.html` utilizando:
+### 5. Executar o Back-end
 
-- Live Server
-- Navegador
-- Extensão do VSCode
+#### Dentro da pasta server, execute:
 
----
+```bash
+npm run dev
+```
 
-## API Fake
+## API
 
-Por padrão, o JSON Server executa em:
+Por padrão, a API local executa em:
 
 ```txt
 http://localhost:3000
 ```
 
-Rotas disponíveis:
+#### Rota disponível atualmente
 
-```txt
-/produtos
-/fornecedores
-/movimentacoes
-```
+/api/produtos
 
----
+### 6. Executar o Frond-end
+
+#### Abra o arquivo:
+
+frontend/index.html
+
+#### Utilizando o Live Server no Visual Studio Code.
 
 ## Responsividade
 
