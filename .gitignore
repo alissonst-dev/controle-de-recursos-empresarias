@@ -1,3 +1,5 @@
 node_modules/
 bootstrap-5.3.8-dist/
 .vscode/*
+.env
+*.log

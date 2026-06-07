@@ -1,5 +1,32 @@
 body {
-  font-family: "Inter", Roboto;
+  font-family: "Inter", Roboto, sans-serif;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.produto-img {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+
+#products-table .icone-produto-tabela {
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+#products-table .icone-produto-tabela > img {
+  width: 2rem !important;
+  height: 2rem !important;
+  min-width: 2rem !important;
+  min-height: 2rem !important;
+  object-fit: contain;
 }
 
 #bg-menu {
@@ -8,7 +35,7 @@ body {
 }
 
 #titulo-principal {
-  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 2vw, 2rem);
 }
 
 #logo-principal {
@@ -36,13 +63,11 @@ body {
     margin-left: 18.75rem;
   }
 }
-
 @media (max-width: 991.98px) {
   main {
     margin-top: 3.75rem;
   }
 }
-
 #offcanvasDarkNavbar {
   background-color: #1e1e2e;
 }
@@ -51,7 +76,6 @@ body {
   padding: 1rem 0 1rem 1.5rem;
   color: #94a3b8 !important;
 }
-
 #menu-principal-desktop .menu-icon {
   width: 1.1875rem;
   height: 1.1875rem;
@@ -61,8 +85,10 @@ body {
 #stats-row .stat-icon {
   width: 2.8125rem;
   height: 2.8125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 #stats-row .stat-icon .stat-icon-img {
   width: 1.5rem;
 }
@@ -100,11 +126,7 @@ body {
   font-size: 0.75rem;
   padding: 0;
   border: none !important;
-  transition:
-    color 0.15s ease-in-out,
-    background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .meu-botao-paginacao.ativado,
@@ -128,10 +150,9 @@ body {
   align-items: center;
   padding: 1.5rem 1.5rem 0.5rem 1.5rem;
   border-bottom: 0.0625rem solid #f1f5f9;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 0.75rem 0.75rem 0 0;
 }
-
 .meu-modal-header h2 {
   font-size: 1.25rem;
   font-weight: 600;
@@ -141,13 +162,13 @@ body {
 .meu-modal-body {
   padding: 1.5rem;
   margin: 1.5rem 0.9375rem 1.5rem 0.9375rem;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 0.75rem;
 }
 
 .meu-form-grid {
   display: grid;
-  grid-template-columns: 1fr; /* 1 coluna por padrão no Mobile */
+  grid-template-columns: 1fr;
   gap: 1.25rem;
 }
 
@@ -155,14 +176,12 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 .meu-grupo-input label {
   font-size: 0.875rem;
   font-weight: 500;
   color: #1e1e1e;
   margin-bottom: 0.5rem;
 }
-
 .meu-grupo-input input,
 .meu-grupo-input textarea,
 .meu-grupo-input select {
@@ -176,28 +195,25 @@ body {
   outline: none;
   background-color: #ffffff;
 }
-
-.meu-grupo-input input:focus {
+.meu-grupo-input input:focus,
+.meu-grupo-input textarea:focus,
+.meu-grupo-input select:focus {
   border-color: #6f42c1;
   box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.15);
 }
 
-/* RESPONSIVIDADE (Telas maiores que 768px) */
 @media (min-width: 768px) {
   .meu-form-grid {
     grid-template-columns: 1fr 1fr;
   }
-
   .meu-form-grid .meu-grupo-input:nth-child(1),
   .meu-form-grid .meu-grupo-input:nth-child(2) {
     grid-column: span 2;
   }
-
   #modalProduto .modal-dialog {
     max-width: 45.625rem;
     width: 45.625rem;
   }
-
   #modalProduto .my-modal-custom {
     min-height: 38rem;
     display: flex;
@@ -205,23 +221,18 @@ body {
     justify-content: space-between;
   }
 }
-
 .btn-fechar-custom {
   background: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
   outline: none;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
-
 .btn-fechar-custom:hover {
   opacity: 0.7;
   transform: scale(1.05);
 }
-
 .btn-fechar-custom:focus {
   box-shadow: none !important;
   outline: none !important;
@@ -232,6 +243,11 @@ body {
   justify-content: flex-end;
   gap: 1.1rem;
   padding-top: 1.875rem;
+}
+.meu-modal-footer button img {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
 }
 
 .btn-cancelar,
@@ -258,8 +274,91 @@ body {
   color: #ffffff;
 }
 
-.meu-modal-footer button img {
-  width: 1.5rem;
-  height: 1.5rem;
-  object-fit: contain;
+body {
+  font-family: "Inter", Roboto, sans-serif;
+  background-color: #f8fafc;
 }
+
+#bg-menu {
+  background-color: #1e1e2e !important;
+}
+
+#offcanvasDarkNavbar {
+  background-color: #1e1e2e;
+}
+
+#menu-heading {
+  color: #94a3b8 !important;
+}
+
+#menu-principal,
+#menu-principal a {
+  color: #94a3b8 !important;
+}
+
+#menu-principal-desktop .nav-link {
+  color: #94a3b8 !important;
+}
+
+#linha-menu {
+  background-color: #e5e7eb;
+}
+
+#add-product-btn {
+  background-color: #6f42c1;
+}
+
+.btn-salvar {
+  background-color: #6d28d9;
+  color: #ffffff;
+}
+
+.btn-cancelar {
+  background-color: #ffffff;
+}
+
+.titulo-tabela-produtos {
+  color: #4b5563 !important;
+}
+
+.meu-botao-paginacao {
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.my-modal-custom {
+  background-color: #faf9fb;
+}
+
+.meu-modal-header,
+.meu-modal-body {
+  background-color: #ffffff;
+}
+
+.meu-modal-header {
+  border-bottom: 0.0625rem solid #f1f5f9;
+}
+
+.meu-grupo-input input,
+.meu-grupo-input textarea,
+.meu-grupo-input select {
+  border: 0.0625rem solid #cbd5e1;
+  background-color: #ffffff;
+}
+.meu-grupo-input input:focus,
+.meu-grupo-input textarea:focus,
+.meu-grupo-input select:focus {
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.15);
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=style.css.map */
