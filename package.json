@@ -4,7 +4,13 @@
     "jquery": "^4.0.0"
   },
   "devDependencies": {
+    "eslint": "^8.57.1",
     "prettier": "^3.8.3",
     "sass": "^1.69.5"
+  },
+  "scripts": {
+    "lint": "eslint frontend/js/**/*.js server/**/*.js",
+    "format": "prettier --write .",
+    "sass": "sass --no-source-map frontend/styles/main.scss frontend/styles/style.css"
   }
 }

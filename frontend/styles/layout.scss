@@ -1,0 +1,99 @@
+#bg-menu {
+  background-color: $cor-sidebar !important;
+  width: $largura-sidebar;
+}
+
+#offcanvasDarkNavbar {
+  background-color: $cor-sidebar;
+}
+
+#menu-heading {
+  color: $cor-texto-sidebar !important;
+  padding: 1.25rem 0;
+}
+
+#menu-principal,
+#menu-principal a {
+  color: $cor-texto-sidebar !important;
+}
+
+#linha-menu {
+  height: 0.0625rem;
+  width: 14.75rem;
+  background-color: $cor-linha;
+}
+
+#menu-principal-desktop {
+  .nav-link {
+    padding: 1rem 0 1rem 1.5rem;
+    color: $cor-texto-sidebar !important;
+  }
+
+  .menu-icon {
+    width: 1.1875rem;
+    height: 1.1875rem;
+    margin-right: 0.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  main {
+    margin-left: $largura-sidebar;
+  }
+  .page-header {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  main {
+    margin-top: $altura-menu-mobile;
+  }
+}
+
+.page-header {
+  height: 4.65rem;
+  background-color: $cor-branco;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 992px) {
+  main {
+    margin-left: $largura-sidebar;
+  }
+
+  .page-header {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  main {
+    margin-top: 0;
+  }
+
+  .page-header {
+    margin-top: 3.75rem;
+    height: 4.65rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  main {
+    margin-top: 0;
+  }
+
+  .page-header {
+    margin-top: 3.75rem;
+    height: 4.65rem;
+    padding: 0 1rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+#bg-menu-mobile {
+  background-color: $cor-sidebar !important;
+}

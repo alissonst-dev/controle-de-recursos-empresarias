@@ -1,0 +1,223 @@
+#add-fornecedor-btn {
+  background-color: $cor-primaria-escura;
+}
+
+#fornecedores-table {
+  th {
+    white-space: nowrap;
+  }
+
+  td {
+    color: #374151;
+    vertical-align: middle;
+  }
+
+  .icone-fornecedor-tabela {
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    flex-shrink: 0;
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+      object-fit: contain;
+    }
+  }
+}
+
+.status-badge {
+  display: inline-block;
+  min-width: 7.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-badge-success {
+  color: #15803d;
+  background-color: #dcfce7;
+}
+
+.status-badge-danger {
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.status-badge-warning {
+  color: #d97706;
+  background-color: #ffedd5;
+}
+
+@media (max-width: 991.98px) {
+  #fornecedores-table {
+    min-width: 62rem;
+  }
+}
+
+// modal
+
+#modalFornecedor {
+  .modal-dialog {
+    max-width: 54rem;
+    margin: 1.25rem auto;
+  }
+}
+
+.fornecedor-modal-custom {
+  min-height: auto;
+}
+
+.fornecedor-modal-body {
+  min-height: auto;
+  margin: 1rem;
+  padding: 1.25rem;
+}
+
+.fornecedor-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.fornecedor-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fornecedor-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+
+  img {
+    width: 1.125rem;
+    height: 1.125rem;
+    object-fit: contain;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: #111827;
+  }
+}
+
+.fornecedor-cidade-estado {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.fornecedor-linha {
+  margin: 1.5rem 0 1.25rem;
+  border-color: $cor-linha;
+  opacity: 1;
+}
+
+.fornecedor-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}
+
+#modalFornecedor {
+  .meu-modal-header {
+    padding: 1.25rem 1.25rem 0.75rem 1.25rem;
+
+    h2 {
+      font-size: 1.125rem;
+    }
+  }
+
+  .meu-grupo-input {
+    label {
+      font-size: 0.8125rem;
+      margin-bottom: 0.4rem;
+    }
+
+    input,
+    select,
+    textarea {
+      height: 2.4rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .fornecedor-cidade-estado {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  #modalFornecedor {
+    .modal-dialog {
+      max-width: 52rem;
+    }
+  }
+
+  .fornecedor-form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  #modalFornecedor {
+    .modal-dialog {
+      max-width: 54rem;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  #modalFornecedor {
+    .modal-dialog {
+      max-width: calc(100% - 1rem);
+      margin: 0.5rem auto;
+    }
+
+    .meu-modal-header {
+      padding: 1rem 1rem 0.75rem 1rem;
+    }
+  }
+
+  .fornecedor-modal-body {
+    margin: 0.75rem;
+    padding: 1rem;
+  }
+
+  .fornecedor-form-grid {
+    gap: 1.25rem;
+  }
+
+  .fornecedor-form-section {
+    gap: 0.9rem;
+  }
+
+  .fornecedor-linha {
+    margin: 1.25rem 0 1rem;
+  }
+
+  .fornecedor-modal-footer {
+    flex-direction: column-reverse;
+
+    button {
+      width: 100%;
+    }
+  }
+}
