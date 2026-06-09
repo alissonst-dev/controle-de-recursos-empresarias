@@ -138,6 +138,11 @@ Na raiz do projeto, execute:
 ```bash
 npx sass --no-source-map frontend/styles/main.scss frontend/styles/style.css
 ```
+#### Ou
+
+```bash
+npm run sass
+```
 
 ---
 

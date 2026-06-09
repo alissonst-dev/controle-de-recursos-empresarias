@@ -256,8 +256,8 @@ DELETE /fornecedores/:id
       "descricao": "Notebook com 8GB RAM e SSD 1TB",
       "categoria": "Informática",
       "fornecedorId": "1",
-      "precoCusto": 2800.00,
-      "precoVenda": 3500.00,
+      "precoCusto": 2800.0,
+      "precoVenda": 3500.0,
       "quantidade": 10,
       "quantidadeMinima": 2
     }

@@ -10,15 +10,11 @@ module.exports = {
     sourceType: "script",
   },
 
-  ignorePatterns: [
-    "node_modules/",
-    "server/node_modules/",
-    "frontend/styles/",
-  ],
+  ignorePatterns: ["node_modules/", "server/node_modules/", "frontend/styles/"],
 
   rules: {
     "no-unused-vars": "warn",
     "no-undef": "error",
-    "semi": ["error", "always"],
+    semi: ["error", "always"],
   },
 };

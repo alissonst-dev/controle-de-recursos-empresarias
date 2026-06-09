@@ -261,7 +261,11 @@ body {
   font-size: 0.75rem;
   padding: 0;
   border: none !important;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 
 .meu-botao-paginacao.ativado,
@@ -332,7 +336,9 @@ body {
   padding: 0;
   cursor: pointer;
   outline: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 .btn-fechar-custom:hover {
   opacity: 0.7;
@@ -704,7 +710,11 @@ body {
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 
 .movimentacao-tipo-entrada {
