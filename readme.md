@@ -6,7 +6,7 @@ O Inventario é uma aplicação web responsiva desenvolvida para gerenciamento d
 
 O sistema foi desenvolvido com foco em organização, responsividade e usabilidade, oferecendo uma interface moderna inspirada em dashboards administrativos.
 
-O frontend da aplicação é desenvolvido com HTML, CSS e JavaScript, utilizando Bootstrap para responsividade e componentes visuais. A persistência de dados é simulada através de uma API local desenvolvida com Node.js e Express, utilizando um arquivo JSON como base de dados.
+O frontend da aplicação é desenvolvido com HTML, CSS, Sass (SCSS) e JavaScript, utilizando Bootstrap para responsividade e componentes visuais. A persistência de dados é simulada através de uma API local desenvolvida com Node.js e Express, utilizando um arquivo JSON como base de dados.
 
 ---
 
@@ -24,7 +24,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 - [Design System](./docs/design-system.md) - Identidade visual da aplicação.
 - [Protótipo no Figma](https://www.figma.com/design/iFHHTdc5GD96uNcmtKHcnZ/meu-projeto---controle-estoque?node-id=0-1&t=xUYR4AGpdfW2OOF2-1) - Telas da aplicação - link.
-- [ GitHub Pages](#) - Deploy do projeto.
+- [ GitHub Pages](https://alissonst-dev.github.io/controle-de-recursos-empresarias/) - Deploy do projeto.
 
 ---
 
@@ -34,6 +34,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 - HTML5
 - CSS3
+- Sass (SCSS)
 - JavaScript ES6+
 - Bootstrap v5.3
 
@@ -68,7 +69,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 - [x] ID 07 - Utiliza Sass (SCSS) com ou sem framework, aplicando variáveis, mixins e funções para modularizar o código.
 - [x] ID 08 - Aplica tipografia responsiva (media queries mobile first) ou tipografia fluida (função clamp() + unidades relativas).
 - [x] ID 09 - Aplica técnicas de responsividade de imagens usando CSS (object-fit, containers com unidades relativas).
-- [ ] ID 10 - Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (srcset, picture, ou parâmetros do Cloudinary).
+- [x] ID 10 - Otimiza imagens usando formatos modernos (WebP) e carregamento adaptativo (srcset, picture, ou parâmetros do Cloudinary).
 
 ---
 
@@ -130,7 +131,17 @@ npm install
 
 ---
 
-### 4. Instalar dependências do Back-end
+### 4. Compilar o Sass
+
+Na raiz do projeto, execute:
+
+```bash
+npx sass --no-source-map frontend/styles/main.scss frontend/styles/style.css
+```
+
+---
+
+### 5. Instalar dependências do Back-end
 
 #### Acesse a pasta do servidor
 
@@ -144,7 +155,7 @@ cd server
 npm install
 ```
 
-### 5. Executar o Back-end
+### 6. Executar o Back-end
 
 #### Dentro da pasta server, execute:
 
@@ -162,13 +173,23 @@ http://localhost:3000
 
 #### Rota disponível atualmente
 
+```txt
 /api/produtos
+```
 
-### 6. Executar o Frond-end
+### 7. Executar o Front-end
 
 #### Abra o arquivo:
 
-frontend/index.html
+```txt
+index.html
+```
+
+ou:
+
+```txt
+frontend/produtos.html
+```
 
 #### Utilizando o Live Server no Visual Studio Code.
 
