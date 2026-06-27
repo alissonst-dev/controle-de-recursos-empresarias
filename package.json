@@ -1,4 +1,27 @@
 {
+  "name": "controle-de-recursos-empresarias",
+  "version": "1.0.0",
+  "description": "O Inventario é uma aplicação web responsiva desenvolvida para gerenciamento de estoque empresarial, permitindo o cadastro de produtos, fornecedores e controle de movimentações de entrada e saída.",
+  "homepage": "https://github.com/alissonst-dev/controle-de-recursos-empresarias#readme",
+  "bugs": {
+    "url": "https://github.com/alissonst-dev/controle-de-recursos-empresarias/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alissonst-dev/controle-de-recursos-empresarias.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "lint": "eslint app/pages/**/*.js server/**/*.js",
+    "format": "prettier --write .",
+    "sass": "sass --no-source-map assets/css/main.scss assets/css/style.css"
+  },
   "dependencies": {
     "bootstrap": "^5.3.8",
     "jquery": "^4.0.0"
@@ -7,10 +30,5 @@
     "eslint": "^8.57.1",
     "prettier": "^3.8.3",
     "sass": "^1.69.5"
-  },
-  "scripts": {
-    "lint": "eslint frontend/js/**/*.js server/**/*.js",
-    "format": "prettier --write .",
-    "sass": "sass --no-source-map frontend/styles/main.scss frontend/styles/style.css"
   }
 }

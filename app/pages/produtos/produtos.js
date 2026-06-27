@@ -87,7 +87,7 @@ async function carregarProdutos() {
                 <td>
                   <div class="d-flex align-items-center gap-3">
                     <div class="icone-produto-tabela rounded bg-purple-light d-flex align-items-center justify-content-center">
-                      <img src="../img/icones/caixa_white_purple.svg" alt="" aria-hidden="true">
+                      <img src="../../../img/icones/caixa_white_purple.svg" alt="" aria-hidden="true">
                     </div>
                     <span class="fw-semibold">${produto.nome}</span>
                   </div>
@@ -103,7 +103,7 @@ async function carregarProdutos() {
                 </td>
                 <td class="text-center">
                   <button type="button" aria-label="Excluir produto" class="btn btn-link text-muted p-0">
-                    <img src="../img/icones/lixo_icone.svg" alt="" aria-hidden="true" width="24" height="24">
+                    <img src="../../../img/icones/lixo_icone.svg" alt="" aria-hidden="true" width="24" height="24">
                   </button>
                 </td>
             `;

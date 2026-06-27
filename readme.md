@@ -22,7 +22,6 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 ## Design
 
-- [Design System](./docs/design-system.md) - Identidade visual da aplicação.
 - [Protótipo no Figma](https://www.figma.com/design/iFHHTdc5GD96uNcmtKHcnZ/meu-projeto---controle-estoque?node-id=0-1&t=xUYR4AGpdfW2OOF2-1) - Telas da aplicação - link.
 - [ GitHub Pages](https://alissonst-dev.github.io/controle-de-recursos-empresarias/) - Deploy do projeto.
 
@@ -136,7 +135,7 @@ npm install
 Na raiz do projeto, execute:
 
 ```bash
-npx sass --no-source-map frontend/styles/main.scss frontend/styles/style.css
+npx sass --no-source-map assets/css/main.scss assets/css/style.css
 ```
 #### Ou
 
@@ -176,10 +175,12 @@ Por padrão, a API local executa em:
 http://localhost:3000
 ```
 
-#### Rota disponível atualmente
+#### Rotas disponíveis atualmente
 
 ```txt
 /api/produtos
+/api/fornecedores
+/api/movimentacoes
 ```
 
 ### 7. Executar o Front-end
@@ -193,7 +194,7 @@ index.html
 ou:
 
 ```txt
-frontend/produtos.html
+app/pages/produtos/index.html
 ```
 
 #### Utilizando o Live Server no Visual Studio Code.
