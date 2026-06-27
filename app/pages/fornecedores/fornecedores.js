@@ -1,9 +1,91 @@
+// Aplica máscaras de digitação com o plugin jQuery Mask
+$(document).ready(function () {
+  $("#input-cnpj-fornecedor").mask("00.000.000/0000-00");
+  $("#input-telefone-fornecedor").mask("(00) 00000-0000");
+  $("#input-cep-fornecedor").mask("00000-000");
+});
+
 // 1. Mapeia o formulário do Modal de fornecedores
 const formFornecedor = document.getElementById("form-fornecedor");
+
+const inputCnpj = document.getElementById("input-cnpj-fornecedor");
+const inputTelefone = document.getElementById("input-telefone-fornecedor");
+const inputCep = document.getElementById("input-cep-fornecedor");
+
+// Expressões regulares usadas para validar o formato de cada campo
+const REGEX_CNPJ = /^\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2}$/;
+const REGEX_TELEFONE = /^\+?\d{0,3}\s?\(?\d{2}\)?\s?9?\s?\d{4}-?\d{4}$/;
+const REGEX_CEP = /^\d{5}-?\d{3}$/;
+
+// Aplica a regex no campo e usa setCustomValidity para mostrar
+// a mensagem de erro no balão nativo do navegador
+function validarComRegex(input, regex, mensagemErro) {
+  if (input.value && !regex.test(input.value)) {
+    input.setCustomValidity(mensagemErro);
+  } else {
+    input.setCustomValidity("");
+  }
+}
+
+inputCnpj.addEventListener("input", () =>
+  validarComRegex(
+    inputCnpj,
+    REGEX_CNPJ,
+    "Informe um CNPJ válido, ex.: 00.000.000/0000-00",
+  ),
+);
+
+inputTelefone.addEventListener("input", () =>
+  validarComRegex(
+    inputTelefone,
+    REGEX_TELEFONE,
+    "Informe um telefone válido, ex.: (42) 99999-9999",
+  ),
+);
+
+inputCep.addEventListener("input", () =>
+  validarComRegex(inputCep, REGEX_CEP, "Informe um CEP válido, ex.: 85200-000"),
+);
+
+// Busca o endereço na API pública ViaCEP quando o usuário termina de
+// digitar o CEP (evento blur = quando o campo perde o foco)
+const inputEndereco = document.getElementById("input-endereco-fornecedor");
+const inputCidade = document.getElementById("input-cidade-fornecedor");
+const inputEstado = document.getElementById("input-estado-fornecedor");
+
+inputCep.addEventListener("blur", async () => {
+  const cepLimpo = inputCep.value.replace(/\D/g, "");
+
+  // CEP brasileiro tem 8 dígitos; sem isso nem tenta consultar
+  if (cepLimpo.length !== 8) return;
+
+  try {
+    const resposta = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+    const dados = await resposta.json();
+
+    if (dados.erro) {
+      alert("CEP não encontrado.");
+      return;
+    }
+
+    inputEndereco.value = dados.logradouro;
+    inputCidade.value = dados.localidade;
+    inputEstado.value = dados.uf;
+  } catch (error) {
+    console.error("Erro ao consultar o CEP:", error);
+    alert("Não foi possível consultar o CEP. Verifique sua conexão.");
+  }
+});
 
 // 2. Escuta o momento do envio (Submit)
 formFornecedor.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  // Garante que os campos com regex foram validados antes de enviar
+  if (!formFornecedor.checkValidity()) {
+    formFornecedor.reportValidity();
+    return;
+  }
 
   // 3. Pega os valores de todos os inputs do formulário do HTML
   const nome = document.getElementById("input-nome-fornecedor").value;
@@ -109,6 +191,9 @@ async function carregarFornecedores() {
 
       tabelaFornecedores.appendChild(linha);
     });
+
+    // Usa jQuery para animar a exibição da tabela depois que os dados carregam
+    $(tabelaFornecedores).hide().fadeIn(400);
   } catch (error) {
     console.error("Erro ao carregar tabela:", error);
   }

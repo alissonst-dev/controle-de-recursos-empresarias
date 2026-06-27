@@ -13,18 +13,18 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "lint": "eslint app/pages/**/*.js server/**/*.js",
+    "lint": "eslint \"app/pages/**/*.js\" server/index.js",
     "format": "prettier --write .",
     "sass": "sass --no-source-map assets/css/main.scss assets/css/style.css"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "jquery": "^4.0.0"
+    "jquery": "^3.7.1",
+    "jquery-mask-plugin": "^1.14.16"
   },
   "devDependencies": {
     "eslint": "^8.57.1",

@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     node: true,
     es2022: true,
+    jquery: true,
   },
 
   parserOptions: {
@@ -10,7 +11,7 @@ module.exports = {
     sourceType: "script",
   },
 
-  ignorePatterns: ["node_modules/", "server/node_modules/", "frontend/styles/"],
+  ignorePatterns: ["node_modules/", "server/node_modules/"],
 
   rules: {
     "no-unused-vars": "warn",

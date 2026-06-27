@@ -23,6 +23,7 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 ## Design
 
 - [Protótipo no Figma](https://www.figma.com/design/iFHHTdc5GD96uNcmtKHcnZ/meu-projeto---controle-estoque?node-id=0-1&t=xUYR4AGpdfW2OOF2-1) - Telas da aplicação - link.
+- [Design System](./docs/sdd.md#1-identidade-visual-design-tokens) - Identidade visual da aplicação (cores, tipografia, espaçamento).
 - [ GitHub Pages](https://alissonst-dev.github.io/controle-de-recursos-empresarias/) - Deploy do projeto.
 
 ---
@@ -41,17 +42,17 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 ### Bibliotecas JavaScript
 
-- jQuery
-- jQuery Mask Plugin
+- jQuery - Para manipulação do DOM e animações (ex.: efeito fade na listagem de fornecedores).
+- jQuery Mask Plugin - Para aplicar máscaras de digitação nos campos de CNPJ, telefone e CEP.
 
 ---
 
 ### Persistência e APIs
 
-- Node.js
-- Express
-- API local com arquivo JSON
-- ViaCEP API
+- Node.js - Ambiente de execução do servidor backend.
+- Express - Para criar as rotas da API fake (produtos, fornecedores e movimentações).
+- API local com arquivo JSON - Para persistir os dados cadastrados sem precisar de um banco de dados.
+- ViaCEP API - Para buscar automaticamente o endereço a partir do CEP digitado no cadastro de fornecedor.
 
 ---
 
@@ -75,9 +76,9 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 ### RA2 - Realizar tratamento de formulários e aplicar validações customizadas no lado cliente.
 
 - [x] ID 11 - Implementa validação HTML nativa (campos obrigatórios, tipos, limites de caracteres) com mensagens de erro/sucesso no lado cliente.
-- [ ] ID 12 - Aplica expressões regulares (REGEX) para validações customizadas (e-mail, telefone, datas, etc.)
-- [ ] ID 13 - Utiliza elementos de seleção em formulários (checkbox, radio, select) para coleta de dados.
-- [ ] ID 14 - Implementa leitura e escrita no Web Storage (localStorage/sessionStorage) para persistir dados localmente.
+- [x] ID 12 - Aplica expressões regulares (REGEX) para validações customizadas (e-mail, telefone, datas, etc.)
+- [x] ID 13 - Utiliza elementos de seleção em formulários (checkbox, radio, select) para coleta de dados.
+- [x] ID 14 - Implementa leitura e escrita no Web Storage (localStorage/sessionStorage) para persistir dados localmente.
 
 ---
 
@@ -93,16 +94,16 @@ Para entender as regras de negócio, arquitetura e funcionamento da aplicação,
 
 ### RA4 - Aplicar bibliotecas de funções e componentes em JavaScript para aprimorar a interatividade de páginas web.
 
-- [ ] ID 20 - Utiliza jQuery para manipulação do DOM e interatividade (eventos, animações, manipulação de elementos)
-- [ ] ID 21 - Integra e configura um plugin jQuery relevante (ex.: jQuery Mask Plugin).
+- [x] ID 20 - Utiliza jQuery para manipulação do DOM e interatividade (eventos, animações, manipulação de elementos)
+- [x] ID 21 - Integra e configura um plugin jQuery relevante (ex.: jQuery Mask Plugin).
 
 ---
 
 ### RA5 - Efetuar requisições assíncronas para uma API fake e APIs públicas, permitindo a obtenção e manipulação de dados dinamicamente.
 
-- [ ] ID 22 - Realiza requisições assíncronas para uma API fake (ex.: JSON Server) para persistir dados de um formulário.
-- [ ] ID 23 - Realiza requisições assíncronas para uma API fake para exibir dados na página.
-- [ ] ID 24 - Realiza requisições assíncronas para APIs públicas reais (OpenWeather, ViaCEP etc.), exibindo os dados e tratando erros.
+- [x] ID 22 - Realiza requisições assíncronas para uma API fake (ex.: JSON Server) para persistir dados de um formulário.
+- [x] ID 23 - Realiza requisições assíncronas para uma API fake para exibir dados na página.
+- [x] ID 24 - Realiza requisições assíncronas para APIs públicas reais (OpenWeather, ViaCEP etc.), exibindo os dados e tratando erros.
 
 ---
 

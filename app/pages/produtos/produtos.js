@@ -1,6 +1,53 @@
 // 1. Mapeia o formulário do seu Modal de produtos
 const formProduto = document.getElementById("form-produto");
 
+const RASCUNHO_PRODUTO_KEY = "rascunho-produto";
+
+// Salva o que foi digitado no formulário no localStorage,
+// assim o usuário não perde os dados se sair da página sem salvar
+function salvarRascunhoProduto() {
+  const rascunho = {
+    nome: document.getElementById("input-nome").value,
+    descricao: document.getElementById("input-descricao").value,
+    categoria: document.getElementById("input-categoria").value,
+    fornecedor: document.getElementById("input-fornecedor").value,
+    precoCusto: document.getElementById("input-preco-custo").value,
+    precoVenda: document.getElementById("input-preco-venda").value,
+    quantidade: document.getElementById("input-qtd").value,
+  };
+  localStorage.setItem(RASCUNHO_PRODUTO_KEY, JSON.stringify(rascunho));
+}
+
+// Lê o rascunho salvo no localStorage e preenche o formulário com ele
+function restaurarRascunhoProduto() {
+  const rascunhoSalvo = localStorage.getItem(RASCUNHO_PRODUTO_KEY);
+  if (!rascunhoSalvo) return;
+
+  const rascunho = JSON.parse(rascunhoSalvo);
+  document.getElementById("input-nome").value = rascunho.nome || "";
+  document.getElementById("input-descricao").value = rascunho.descricao || "";
+  document.getElementById("input-categoria").value = rascunho.categoria || "";
+  document.getElementById("input-fornecedor").value = rascunho.fornecedor || "";
+  document.getElementById("input-preco-custo").value = rascunho.precoCusto || "";
+  document.getElementById("input-preco-venda").value = rascunho.precoVenda || "";
+  document.getElementById("input-qtd").value = rascunho.quantidade || "";
+}
+
+function limparRascunhoProduto() {
+  localStorage.removeItem(RASCUNHO_PRODUTO_KEY);
+}
+
+// Sempre que o usuário digitar algo no formulário, salva o rascunho
+formProduto.addEventListener("input", salvarRascunhoProduto);
+
+// Ao cancelar, descarta o rascunho salvo
+document
+  .getElementById("form-cancelar")
+  .addEventListener("click", limparRascunhoProduto);
+
+// Ao carregar a página, restaura o rascunho (se existir)
+document.addEventListener("DOMContentLoaded", restaurarRascunhoProduto);
+
 // 2. Escuta o momento do envio (Submit)
 formProduto.addEventListener("submit", async (event) => {
   // Evita o recarregamento padrão da página
@@ -39,6 +86,9 @@ formProduto.addEventListener("submit", async (event) => {
 
     if (resposta.ok) {
       alert("Produto cadastrado com sucesso!");
+
+      // Limpa o rascunho salvo, já que o produto foi cadastrado
+      limparRascunhoProduto();
 
       // Limpa os campos do formulário
       formProduto.reset();
