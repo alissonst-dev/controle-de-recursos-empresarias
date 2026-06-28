@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "nome": "reval",
+    "cnpj": "06.089.129/0001-02",
+    "categoria": "papelaria",
+    "email": "email@gmail.com",
+    "telefone": "(42) 99929-9929",
+    "cep": "85200-146",
+    "endereco": "Rua Onino Gonçalves Padilha",
+    "cidade": "Pitanga",
+    "estado": "PR",
+    "status": "Ativo",
+    "id": 1782672781578
+  }
+]

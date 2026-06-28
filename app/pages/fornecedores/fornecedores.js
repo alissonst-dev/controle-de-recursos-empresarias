@@ -171,8 +171,12 @@ function atualizarEstatisticasFornecedores(fornecedores) {
 // busca os fornecedores no backend e renderiza tabela + cards
 async function carregarFornecedores() {
   try {
-    const resposta = await fetch("http://localhost:3000/api/fornecedores");
-    const fornecedores = await resposta.json();
+    const [respostaFornecedores, respostaProdutos] = await Promise.all([
+      fetch("http://localhost:3000/api/fornecedores"),
+      fetch("http://localhost:3000/api/produtos"),
+    ]);
+    const fornecedores = await respostaFornecedores.json();
+    const produtos = await respostaProdutos.json();
 
     atualizarEstatisticasFornecedores(fornecedores);
 
@@ -193,6 +197,10 @@ async function carregarFornecedores() {
     fornecedores.forEach((fornecedor) => {
       const linha = document.createElement("tr");
 
+      const totalProdutos = produtos.filter(
+        (produto) => produto.fornecedor === fornecedor.nome,
+      ).length;
+
       linha.innerHTML = `
                 <td>
                   <div class="d-flex align-items-center gap-3">
@@ -205,7 +213,7 @@ async function carregarFornecedores() {
                 <td>${fornecedor.cidade || "Não informado"}</td>
                 <td>${fornecedor.email}</td>
                 <td>${fornecedor.telefone}</td>
-                <td class="text-center">0</td>
+                <td class="text-center">${totalProdutos}</td>
                 <td class="text-center">
                   <span class="status-badge status-badge-success">${fornecedor.status}</span>
                 </td>

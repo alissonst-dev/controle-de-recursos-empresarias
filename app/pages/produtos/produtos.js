@@ -148,6 +148,15 @@ async function carregarProdutos() {
     produtos.forEach((produto) => {
       const linha = document.createElement("tr");
 
+      // estoque zerado tem prioridade sobre o status cadastrado
+      const semEstoque = produto.quantidade === 0;
+      const statusTexto = semEstoque ? "Sem estoque" : produto.status;
+      const statusClasses = semEstoque
+        ? "bg-danger-subtle text-danger"
+        : produto.status === "Ativo"
+          ? "bg-success-subtle text-success"
+          : "bg-secondary-subtle text-secondary";
+
       linha.innerHTML = `
                 <td>
                   <div class="d-flex align-items-center gap-3">
@@ -162,8 +171,8 @@ async function carregarProdutos() {
                 <td>${produto.categoria}</td>
                 <td class="fw-medium">R$ ${Number(produto.preco_venda).toFixed(2).replace(".", ",")}</td>
                 <td>
-                  <span class="bg-success-subtle text-success px-3 py-2 rounded fw-medium d-inline-block text-center" style="width: 85px;">
-                    ${produto.status}
+                  <span class="${statusClasses} px-3 py-2 rounded fw-medium d-inline-block text-center" style="width: 85px;">
+                    ${statusTexto}
                   </span>
                 </td>
                 <td class="text-center">
