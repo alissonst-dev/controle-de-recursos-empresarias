@@ -1,10 +1,9 @@
-// 1. Mapeia o formulário do seu Modal de produtos
+// referência ao formulário do modal de cadastro de produto
 const formProduto = document.getElementById("form-produto");
 
 const RASCUNHO_PRODUTO_KEY = "rascunho-produto";
 
-// Salva o que foi digitado no formulário no localStorage,
-// assim o usuário não perde os dados se sair da página sem salvar
+// guarda o progresso do formulário no localStorage caso o usuário saia sem salvar
 function salvarRascunhoProduto() {
   const rascunho = {
     nome: document.getElementById("input-nome").value,
@@ -18,7 +17,7 @@ function salvarRascunhoProduto() {
   localStorage.setItem(RASCUNHO_PRODUTO_KEY, JSON.stringify(rascunho));
 }
 
-// Lê o rascunho salvo no localStorage e preenche o formulário com ele
+// recupera o rascunho salvo e preenche o formulário com ele
 function restaurarRascunhoProduto() {
   const rascunhoSalvo = localStorage.getItem(RASCUNHO_PRODUTO_KEY);
   if (!rascunhoSalvo) return;
@@ -37,33 +36,31 @@ function limparRascunhoProduto() {
   localStorage.removeItem(RASCUNHO_PRODUTO_KEY);
 }
 
-// Sempre que o usuário digitar algo no formulário, salva o rascunho
+// salva o rascunho a cada alteração no formulário
 formProduto.addEventListener("input", salvarRascunhoProduto);
 
-// Ao cancelar, descarta o rascunho salvo
+// descarta o rascunho se o usuário cancelar o cadastro
 document
   .getElementById("form-cancelar")
   .addEventListener("click", limparRascunhoProduto);
 
-// Ao carregar a página, restaura o rascunho (se existir)
+// restaura o rascunho (se existir) quando a página abre
 document.addEventListener("DOMContentLoaded", restaurarRascunhoProduto);
 
-// 2. Escuta o momento do envio (Submit)
+// envio do formulário de cadastro de produto
 formProduto.addEventListener("submit", async (event) => {
-  // Evita o recarregamento padrão da página
   event.preventDefault();
 
-  // 3. Pega os valores de todos os inputs do formulário do HTML
   const nome = document.getElementById("input-nome").value;
   const descricao = document.getElementById("input-descricao").value;
   const categoria = document.getElementById("input-categoria").value;
   const fornecedor = document.getElementById("input-fornecedor").value;
   const precoCusto = document.getElementById("input-preco-custo").value;
   const precoVenda = document.getElementById("input-preco-venda").value;
-  const quantidade = document.getElementById("input-qtd").value || 0; // Se vazio, vira 0
+  const quantidade = document.getElementById("input-qtd").value || 0;
   const quantidadeMinima = document.getElementById("input-qtd-minima").value || 0;
 
-  // 4. Junta tudo em um objeto completo seguindo o padrão do seu layout
+  // monta o objeto no formato que o backend espera
   const novoProduto = {
     nome: nome,
     descricao: descricao,
@@ -73,11 +70,10 @@ formProduto.addEventListener("submit", async (event) => {
     preco_venda: parseFloat(precoVenda),
     quantidade: parseInt(quantidade),
     quantidade_minima: parseInt(quantidadeMinima),
-    status: "Ativo", // Todo produto novo entra como Ativo por padrão
+    status: "Ativo", // produto novo sempre entra ativo
   };
 
   try {
-    // 5. Envia o JSON completo para o servidor Back-end
     const resposta = await fetch("http://localhost:3000/api/produtos", {
       method: "POST",
       headers: {
@@ -88,14 +84,9 @@ formProduto.addEventListener("submit", async (event) => {
 
     if (resposta.ok) {
       alert("Produto cadastrado com sucesso!");
-
-      // Limpa o rascunho salvo, já que o produto foi cadastrado
       limparRascunhoProduto();
-
-      // Limpa os campos do formulário
       formProduto.reset();
-
-      // Recarrega a página para você ver as mudanças estruturais futuras
+      // recarrega pra atualizar a tabela e os cards com o novo produto
       window.location.reload();
     } else {
       alert("Erro ao cadastrar o produto no servidor.");
@@ -106,20 +97,42 @@ formProduto.addEventListener("submit", async (event) => {
   }
 });
 
-// 1. Mapeia o corpo da tabela onde os produtos vão aparecer
+// corpo da tabela onde os produtos cadastrados aparecem
 const tabelaProdutos = document.querySelector("#products-table tbody");
 
-// 2. Função que busca os produtos no Back-end e joga na tela
+// cards de estatística do topo da página
+const elTotalProdutos = document.getElementById("stat-total-produtos");
+const elProdutosAtivos = document.getElementById("stat-produtos-ativos");
+const elProdutosInativos = document.getElementById("stat-produtos-inativos");
+const elProdutosForaEstoque = document.getElementById(
+  "stat-produtos-fora-estoque",
+);
+
+// totais dos cards, calculados a partir da lista de produtos vinda da API
+function atualizarEstatisticasProdutos(produtos) {
+  elTotalProdutos.textContent = produtos.length;
+  elProdutosAtivos.textContent = produtos.filter(
+    (produto) => produto.status === "Ativo",
+  ).length;
+  elProdutosInativos.textContent = produtos.filter(
+    (produto) => produto.status === "Inativo",
+  ).length;
+  elProdutosForaEstoque.textContent = produtos.filter(
+    (produto) => produto.quantidade === 0,
+  ).length;
+}
+
+// busca os produtos no backend e renderiza tabela + cards
 async function carregarProdutos() {
   try {
-    // Faz o pedido de busca para o servidor
     const resposta = await fetch("http://localhost:3000/api/produtos");
     const produtos = await resposta.json();
 
-    // Limpa a tabela para não duplicar os itens fixos do HTML
+    atualizarEstatisticasProdutos(produtos);
+
+    // limpa pra não duplicar com os itens fixos do HTML
     tabelaProdutos.innerHTML = "";
 
-    // Se não tiver nenhum produto cadastrado ainda
     if (produtos.length === 0) {
       tabelaProdutos.innerHTML = `
                 <tr>
@@ -131,7 +144,7 @@ async function carregarProdutos() {
       return;
     }
 
-    // 3. Passa de produto em produto e cria a linha HTML dele
+    // monta uma linha de tabela pra cada produto
     produtos.forEach((produto) => {
       const linha = document.createElement("tr");
 
@@ -160,7 +173,6 @@ async function carregarProdutos() {
                 </td>
             `;
 
-      // Adiciona a linha criada dentro da tabela
       tabelaProdutos.appendChild(linha);
     });
   } catch (error) {
@@ -168,7 +180,7 @@ async function carregarProdutos() {
   }
 }
 
-// 5. Escuta cliques no botão de excluir (delegado, já que as linhas são criadas dinamicamente)
+// delegado no tbody, já que as linhas são criadas dinamicamente
 tabelaProdutos.addEventListener("click", async (event) => {
   const botaoExcluir = event.target.closest(".btn-excluir-produto");
   if (!botaoExcluir) return;
@@ -193,5 +205,5 @@ tabelaProdutos.addEventListener("click", async (event) => {
   }
 });
 
-// 4. Executa a função assim que a página terminar de carregar
+// carrega tabela e cards quando a página abre
 document.addEventListener("DOMContentLoaded", carregarProdutos);

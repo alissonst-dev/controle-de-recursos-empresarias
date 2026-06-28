@@ -1,24 +1,23 @@
-// Aplica máscaras de digitação com o plugin jQuery Mask
+// máscaras de digitação via jQuery Mask
 $(document).ready(function () {
   $("#input-cnpj-fornecedor").mask("00.000.000/0000-00");
   $("#input-telefone-fornecedor").mask("(00) 00000-0000");
   $("#input-cep-fornecedor").mask("00000-000");
 });
 
-// 1. Mapeia o formulário do Modal de fornecedores
+// referência ao formulário do modal de cadastro de fornecedor
 const formFornecedor = document.getElementById("form-fornecedor");
 
 const inputCnpj = document.getElementById("input-cnpj-fornecedor");
 const inputTelefone = document.getElementById("input-telefone-fornecedor");
 const inputCep = document.getElementById("input-cep-fornecedor");
 
-// Expressões regulares usadas para validar o formato de cada campo
+// formato esperado de cada campo validado por regex
 const REGEX_CNPJ = /^\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2}$/;
 const REGEX_TELEFONE = /^\+?\d{0,3}\s?\(?\d{2}\)?\s?9?\s?\d{4}-?\d{4}$/;
 const REGEX_CEP = /^\d{5}-?\d{3}$/;
 
-// Aplica a regex no campo e usa setCustomValidity para mostrar
-// a mensagem de erro no balão nativo do navegador
+// valida o campo contra a regex e usa setCustomValidity pra exibir o erro nativo do navegador
 function validarComRegex(input, regex, mensagemErro) {
   if (input.value && !regex.test(input.value)) {
     input.setCustomValidity(mensagemErro);
@@ -47,8 +46,7 @@ inputCep.addEventListener("input", () =>
   validarComRegex(inputCep, REGEX_CEP, "Informe um CEP válido, ex.: 85200-000"),
 );
 
-// Busca o endereço na API pública ViaCEP quando o usuário termina de
-// digitar o CEP (evento blur = quando o campo perde o foco)
+// preenche o endereço pela API pública ViaCEP quando o campo de CEP perde o foco
 const inputEndereco = document.getElementById("input-endereco-fornecedor");
 const inputCidade = document.getElementById("input-cidade-fornecedor");
 const inputEstado = document.getElementById("input-estado-fornecedor");
@@ -56,7 +54,7 @@ const inputEstado = document.getElementById("input-estado-fornecedor");
 inputCep.addEventListener("blur", async () => {
   const cepLimpo = inputCep.value.replace(/\D/g, "");
 
-  // CEP brasileiro tem 8 dígitos; sem isso nem tenta consultar
+  // CEP brasileiro tem 8 dígitos, sem isso nem consulta
   if (cepLimpo.length !== 8) return;
 
   try {
@@ -77,17 +75,16 @@ inputCep.addEventListener("blur", async () => {
   }
 });
 
-// 2. Escuta o momento do envio (Submit)
+// envio do formulário de cadastro de fornecedor
 formFornecedor.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  // Garante que os campos com regex foram validados antes de enviar
+  // garante que os campos com regex foram validados antes de enviar
   if (!formFornecedor.checkValidity()) {
     formFornecedor.reportValidity();
     return;
   }
 
-  // 3. Pega os valores de todos os inputs do formulário do HTML
   const nome = document.getElementById("input-nome-fornecedor").value;
   const cnpj = document.getElementById("input-cnpj-fornecedor").value;
   const categoria = document.getElementById(
@@ -104,7 +101,7 @@ formFornecedor.addEventListener("submit", async (event) => {
   const cidade = document.getElementById("input-cidade-fornecedor").value;
   const estado = document.getElementById("input-estado-fornecedor").value;
 
-  // 4. Junta tudo em um objeto completo seguindo o padrão do layout
+  // monta o objeto no formato que o backend espera
   const novoFornecedor = {
     nome,
     cnpj,
@@ -119,7 +116,6 @@ formFornecedor.addEventListener("submit", async (event) => {
   };
 
   try {
-    // 5. Envia o JSON completo para o servidor Back-end
     const resposta = await fetch("http://localhost:3000/api/fornecedores", {
       method: "POST",
       headers: {
@@ -141,14 +137,44 @@ formFornecedor.addEventListener("submit", async (event) => {
   }
 });
 
-// 1. Mapeia o corpo da tabela onde os fornecedores vão aparecer
+// corpo da tabela onde os fornecedores cadastrados aparecem
 const tabelaFornecedores = document.querySelector("#fornecedores-table tbody");
 
-// 2. Função que busca os fornecedores no Back-end e joga na tela
+// cards de estatística do topo da página
+const elTotalFornecedores = document.getElementById(
+  "stat-total-fornecedores",
+);
+const elFornecedoresAtivos = document.getElementById(
+  "stat-fornecedores-ativos",
+);
+const elFornecedoresInativos = document.getElementById(
+  "stat-fornecedores-inativos",
+);
+const elFornecedoresPendentes = document.getElementById(
+  "stat-fornecedores-pendentes",
+);
+
+// totais dos cards, calculados a partir da lista de fornecedores vinda da API
+function atualizarEstatisticasFornecedores(fornecedores) {
+  elTotalFornecedores.textContent = fornecedores.length;
+  elFornecedoresAtivos.textContent = fornecedores.filter(
+    (fornecedor) => fornecedor.status === "Ativo",
+  ).length;
+  elFornecedoresInativos.textContent = fornecedores.filter(
+    (fornecedor) => fornecedor.status === "Inativo",
+  ).length;
+  elFornecedoresPendentes.textContent = fornecedores.filter(
+    (fornecedor) => fornecedor.status === "Pendente",
+  ).length;
+}
+
+// busca os fornecedores no backend e renderiza tabela + cards
 async function carregarFornecedores() {
   try {
     const resposta = await fetch("http://localhost:3000/api/fornecedores");
     const fornecedores = await resposta.json();
+
+    atualizarEstatisticasFornecedores(fornecedores);
 
     tabelaFornecedores.innerHTML = "";
 
@@ -163,6 +189,7 @@ async function carregarFornecedores() {
       return;
     }
 
+    // monta uma linha de tabela pra cada fornecedor
     fornecedores.forEach((fornecedor) => {
       const linha = document.createElement("tr");
 
@@ -192,14 +219,14 @@ async function carregarFornecedores() {
       tabelaFornecedores.appendChild(linha);
     });
 
-    // Usa jQuery para animar a exibição da tabela depois que os dados carregam
+    // anima a exibição da tabela depois que os dados carregam
     $(tabelaFornecedores).hide().fadeIn(400);
   } catch (error) {
     console.error("Erro ao carregar tabela:", error);
   }
 }
 
-// 4. Escuta cliques no botão de excluir (delegado, já que as linhas são criadas dinamicamente)
+// delegado no tbody, já que as linhas são criadas dinamicamente
 tabelaFornecedores.addEventListener("click", async (event) => {
   const botaoExcluir = event.target.closest(".btn-excluir-fornecedor");
   if (!botaoExcluir) return;
@@ -226,5 +253,5 @@ tabelaFornecedores.addEventListener("click", async (event) => {
   }
 });
 
-// 3. Executa a função assim que a página terminar de carregar
+// carrega tabela e cards quando a página abre
 document.addEventListener("DOMContentLoaded", carregarFornecedores);

@@ -1,4 +1,4 @@
-// Elementos dos cards de estatística
+// cards de estatística do topo da página
 const elTotalProdutos = document.getElementById("dashboard-total-produtos");
 const elEstoqueBaixo = document.getElementById("dashboard-estoque-baixo");
 const elValorTotal = document.getElementById("dashboard-valor-total");
@@ -6,10 +6,10 @@ const elTotalFornecedores = document.getElementById(
   "dashboard-total-fornecedores",
 );
 
-// Corpo da tabela "Status do Estoque"
+// corpo da tabela "Status do Estoque"
 const tabelaEstoque = document.querySelector("#dashboard-stock-table tbody");
 
-// Define o status de um produto a partir da quantidade e da quantidade mínima
+// status do produto com base na quantidade e na quantidade mínima cadastrada
 function calcularStatusEstoque(produto) {
   const quantidadeMinima = produto.quantidade_minima || 5;
 
@@ -24,7 +24,7 @@ function calcularStatusEstoque(produto) {
   return { texto: "Estável", classe: "success" };
 }
 
-// Calcula a largura da barra de progresso (proporcional à quantidade mínima)
+// largura da barra de progresso, proporcional à quantidade mínima do produto
 function calcularPercentualEstoque(produto) {
   const quantidadeMinima = produto.quantidade_minima || 5;
   const referencia = Math.max(quantidadeMinima * 4, 20);
@@ -64,6 +64,7 @@ function renderizarLinhaProduto(produto) {
   return linha;
 }
 
+// busca produtos e fornecedores e preenche cards + tabela de estoque
 async function carregarDashboard() {
   try {
     const [respostaProdutos, respostaFornecedores] = await Promise.all([
@@ -74,7 +75,6 @@ async function carregarDashboard() {
     const produtos = await respostaProdutos.json();
     const fornecedores = await respostaFornecedores.json();
 
-    // Cards de estatística
     const estoqueBaixo = produtos.filter(
       (produto) =>
         produto.quantidade > 0 &&
@@ -92,7 +92,6 @@ async function carregarDashboard() {
     elValorTotal.textContent = `R$ ${valorTotal.toFixed(2).replace(".", ",")}`;
     elTotalFornecedores.textContent = fornecedores.length;
 
-    // Tabela "Status do Estoque"
     tabelaEstoque.innerHTML = "";
 
     if (produtos.length === 0) {

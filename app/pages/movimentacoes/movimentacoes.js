@@ -1,11 +1,10 @@
-// 1. Mapeia o formulário e os elementos da página
 const formMovimentacao = document.getElementById("form-movimentacao");
 const selectProduto = document.getElementById("input-produto-movimentacao");
 const tabelaHistorico = document.querySelector(
   "#historico-movimentacoes-table tbody",
 );
 
-// 2. Busca os produtos cadastrados e preenche o <select> com eles
+// preenche o select com os produtos cadastrados, pra movimentação ficar vinculada a um produto real
 async function carregarProdutosNoSelect() {
   try {
     const resposta = await fetch("http://localhost:3000/api/produtos");
@@ -22,7 +21,7 @@ async function carregarProdutosNoSelect() {
   }
 }
 
-// 3. Busca o histórico de movimentações e exibe na tabela
+// busca as movimentações já registradas e monta a tabela de histórico
 async function carregarHistorico() {
   try {
     const resposta = await fetch("http://localhost:3000/api/movimentacoes");
@@ -41,7 +40,7 @@ async function carregarHistorico() {
       return;
     }
 
-    // Mostra as movimentações mais recentes primeiro
+    // mais recentes primeiro
     movimentacoes
       .slice()
       .reverse()
@@ -70,11 +69,10 @@ async function carregarHistorico() {
   }
 }
 
-// 4. Escuta o momento do envio (Submit)
+// envio do formulário de movimentação (entrada/saída)
 formMovimentacao.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  // 5. Pega os valores do formulário
   const tipo = document.querySelector(
     'input[name="tipoMovimentacao"]:checked',
   ).value;
@@ -88,7 +86,6 @@ formMovimentacao.addEventListener("submit", async (event) => {
     return;
   }
 
-  // 6. Junta tudo em um objeto completo
   const novaMovimentacao = {
     produtoId,
     quantidade: parseInt(quantidade),
@@ -96,7 +93,7 @@ formMovimentacao.addEventListener("submit", async (event) => {
   };
 
   try {
-    // 7. Envia o JSON completo para o servidor Back-end
+    // o backend valida estoque e atualiza a quantidade do produto
     const resposta = await fetch("http://localhost:3000/api/movimentacoes", {
       method: "POST",
       headers: {
@@ -111,13 +108,13 @@ formMovimentacao.addEventListener("submit", async (event) => {
       alert("Movimentação registrada com sucesso!");
       formMovimentacao.reset();
 
-      // Atualiza a lista de produtos (estoque mudou) e o histórico
+      // estoque mudou, recarrega select e histórico
       selectProduto.innerHTML =
         '<option value="" disabled selected>Selecione um produto</option>';
       await carregarProdutosNoSelect();
       await carregarHistorico();
     } else {
-      // Mostra o motivo enviado pelo servidor (ex.: estoque insuficiente)
+      // motivo enviado pelo servidor, ex.: estoque insuficiente
       alert(dados.mensagem || "Erro ao registrar a movimentação.");
     }
   } catch (error) {
@@ -126,7 +123,6 @@ formMovimentacao.addEventListener("submit", async (event) => {
   }
 });
 
-// 8. Executa as buscas iniciais assim que a página terminar de carregar
 document.addEventListener("DOMContentLoaded", () => {
   carregarProdutosNoSelect();
   carregarHistorico();
