@@ -123,7 +123,9 @@ Abra o projeto no Visual Studio Code.
 
 ---
 
-### 3. Instalar dependências do Front-end
+### 3. Instalar dependências
+
+Na raiz do projeto, um único comando instala tudo (front-end e back-end):
 
 ```bash
 npm install
@@ -146,23 +148,9 @@ npm run sass
 
 ---
 
-### 5. Instalar dependências do Back-end
+### 5. Executar o Back-end
 
-#### Acesse a pasta do servidor
-
-```bash
-cd server
-```
-
-#### Depois execute
-
-```bash
-npm install
-```
-
-### 6. Executar o Back-end
-
-#### Dentro da pasta server, execute:
+Na raiz do projeto, execute:
 
 ```bash
 npm run dev
@@ -184,7 +172,7 @@ http://localhost:3000
 /api/movimentacoes
 ```
 
-### 7. Executar o Front-end
+### 6. Executar o Front-end
 
 #### Abra o arquivo:
 

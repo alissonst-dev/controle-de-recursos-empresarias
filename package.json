@@ -19,15 +19,19 @@
   "scripts": {
     "lint": "eslint \"app/pages/**/*.js\" server/index.js",
     "format": "prettier --write .",
-    "sass": "sass --no-source-map assets/css/main.scss assets/css/style.css"
+    "sass": "sass --no-source-map assets/css/main.scss assets/css/style.css",
+    "dev": "nodemon --watch server --ext js,json server/index.js"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
     "jquery": "^3.7.1",
     "jquery-mask-plugin": "^1.14.16"
   },
   "devDependencies": {
     "eslint": "^8.57.1",
+    "nodemon": "^3.1.4",
     "prettier": "^3.8.3",
     "sass": "^1.69.5"
   }
