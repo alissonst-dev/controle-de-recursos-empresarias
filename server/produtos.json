@@ -1,14 +1,1 @@
-[
-  {
-    "nome": "Caixa Organizadora",
-    "descricao": "caixa plastica de 20L com tampa e  alças laterais",
-    "categoria": "Material Escolar",
-    "fornecedor": "reval",
-    "preco_custo": 5,
-    "preco_venda": 20,
-    "quantidade": 5,
-    "quantidade_minima": 5,
-    "status": "Ativo",
-    "id": 1782671163497
-  }
-]
+[]

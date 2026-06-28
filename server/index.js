@@ -9,18 +9,16 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Função auxiliar para ler os dados de um arquivo JSON com segurança
+// lê um arquivo JSON do disco; se não existir ou estiver corrompido, devolve lista vazia
 const lerBanco = (arquivo) => {
   try {
     const dados = fs.readFileSync(path.join(__dirname, arquivo), "utf-8");
     return JSON.parse(dados);
   } catch (error) {
-    // Se o arquivo não existir ou estiver corrompido, retorna um array vazio
     return [];
   }
 };
 
-// Função auxiliar para salvar os dados em um arquivo JSON
 const salvarBanco = (arquivo, dados) => {
   fs.writeFileSync(
     path.join(__dirname, arquivo),
@@ -33,36 +31,25 @@ const salvarBanco = (arquivo, dados) => {
    ROTAS DA API - PRODUTOS
     */
 
-// 1. ROTA DE LISTAGEM (GET) - Envia todos os produtos para a tabela
 app.get("/api/produtos", (req, res) => {
   const produtos = lerBanco("produtos.json");
   res.json(produtos);
 });
 
-// 2. ROTA DE CADASTRO (POST) - Recebe o formulário do modal e salva no JSON
 app.post("/api/produtos", (req, res) => {
   const produtos = lerBanco("produtos.json");
-
-  // Pega os dados enviados pelo Front-end
   const novoProduto = req.body;
-
-  // Cria um ID único baseado no carimbo de data/hora atual e injeta no produto
   novoProduto.id = Date.now();
 
-  // Adiciona o novo produto na lista existente
   produtos.push(novoProduto);
-
-  // Grava a lista atualizada de volta no arquivo produtos.json
   salvarBanco("produtos.json", produtos);
 
-  // Responde para o front-end que deu tudo certo e envia o produto cadastrado
   res.status(201).json({
     mensagem: "Produto cadastrado com sucesso!",
     produto: novoProduto,
   });
 });
 
-// 3. ROTA DE EXCLUSÃO (DELETE) - Remove o produto pelo id
 app.delete("/api/produtos/:id", (req, res) => {
   const produtos = lerBanco("produtos.json");
   const id = Number(req.params.id);
