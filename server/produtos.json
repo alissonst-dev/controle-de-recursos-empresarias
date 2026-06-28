@@ -5,31 +5,10 @@
     "categoria": "Material Escolar",
     "fornecedor": "reval",
     "preco_custo": 5,
-    "preco_venda": 10,
-    "quantidade": 0,
+    "preco_venda": 20,
+    "quantidade": 5,
+    "quantidade_minima": 5,
     "status": "Ativo",
-    "id": 1782579254531
-  },
-  {
-    "nome": "Notebook ",
-    "descricao": "8gb ram i5",
-    "categoria": "eletronicos",
-    "fornecedor": "samsung",
-    "preco_custo": 1000,
-    "preco_venda": 2000,
-    "quantidade": 10,
-    "status": "Ativo",
-    "id": 1782579297151
-  },
-  {
-    "nome": "caderno",
-    "descricao": "caderno 200f",
-    "categoria": "escolar",
-    "fornecedor": "reval",
-    "preco_custo": 5,
-    "preco_venda": 10,
-    "quantidade": 10,
-    "status": "Ativo",
-    "id": 1782579488640
+    "id": 1782671163497
   }
 ]

@@ -1,31 +1,102 @@
-// 1. Mapeia o formulário de movimentação
+// 1. Mapeia o formulário e os elementos da página
 const formMovimentacao = document.getElementById("form-movimentacao");
+const selectProduto = document.getElementById("input-produto-movimentacao");
+const tabelaHistorico = document.querySelector(
+  "#historico-movimentacoes-table tbody",
+);
 
-// 2. Escuta o momento do envio (Submit)
+// 2. Busca os produtos cadastrados e preenche o <select> com eles
+async function carregarProdutosNoSelect() {
+  try {
+    const resposta = await fetch("http://localhost:3000/api/produtos");
+    const produtos = await resposta.json();
+
+    produtos.forEach((produto) => {
+      const opcao = document.createElement("option");
+      opcao.value = produto.id;
+      opcao.textContent = `${produto.nome} (${produto.quantidade} em estoque)`;
+      selectProduto.appendChild(opcao);
+    });
+  } catch (error) {
+    console.error("Erro ao carregar produtos:", error);
+  }
+}
+
+// 3. Busca o histórico de movimentações e exibe na tabela
+async function carregarHistorico() {
+  try {
+    const resposta = await fetch("http://localhost:3000/api/movimentacoes");
+    const movimentacoes = await resposta.json();
+
+    tabelaHistorico.innerHTML = "";
+
+    if (movimentacoes.length === 0) {
+      tabelaHistorico.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-center text-muted py-4">
+                        Nenhuma movimentação registrada no momento.
+                    </td>
+                </tr>
+            `;
+      return;
+    }
+
+    // Mostra as movimentações mais recentes primeiro
+    movimentacoes
+      .slice()
+      .reverse()
+      .forEach((movimentacao) => {
+        const linha = document.createElement("tr");
+        const ehEntrada = movimentacao.tipo === "entrada";
+        const dataFormatada = new Date(movimentacao.data).toLocaleString(
+          "pt-BR",
+        );
+
+        linha.innerHTML = `
+                <td class="fw-semibold">${movimentacao.produtoNome}</td>
+                <td class="text-center">
+                  <span class="status-badge ${ehEntrada ? "status-badge-success" : "status-badge-danger"}">
+                    ${ehEntrada ? "Entrada" : "Saída"}
+                  </span>
+                </td>
+                <td class="text-center">${movimentacao.quantidade}</td>
+                <td class="text-center">${dataFormatada}</td>
+            `;
+
+        tabelaHistorico.appendChild(linha);
+      });
+  } catch (error) {
+    console.error("Erro ao carregar histórico:", error);
+  }
+}
+
+// 4. Escuta o momento do envio (Submit)
 formMovimentacao.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  // 3. Pega os valores do formulário
+  // 5. Pega os valores do formulário
   const tipo = document.querySelector(
     'input[name="tipoMovimentacao"]:checked',
   ).value;
-  const produto = document.getElementById(
-    "input-produto-movimentacao",
-  ).value;
+  const produtoId = selectProduto.value;
   const quantidade = document.getElementById(
     "input-quantidade-movimentacao",
   ).value;
 
-  // 4. Junta tudo em um objeto completo
+  if (!produtoId) {
+    alert("Selecione um produto.");
+    return;
+  }
+
+  // 6. Junta tudo em um objeto completo
   const novaMovimentacao = {
-    tipo,
-    produto,
+    produtoId,
     quantidade: parseInt(quantidade),
-    data: new Date().toISOString(),
+    tipo,
   };
 
   try {
-    // 5. Envia o JSON completo para o servidor Back-end
+    // 7. Envia o JSON completo para o servidor Back-end
     const resposta = await fetch("http://localhost:3000/api/movimentacoes", {
       method: "POST",
       headers: {
@@ -34,14 +105,29 @@ formMovimentacao.addEventListener("submit", async (event) => {
       body: JSON.stringify(novaMovimentacao),
     });
 
+    const dados = await resposta.json();
+
     if (resposta.ok) {
       alert("Movimentação registrada com sucesso!");
       formMovimentacao.reset();
+
+      // Atualiza a lista de produtos (estoque mudou) e o histórico
+      selectProduto.innerHTML =
+        '<option value="" disabled selected>Selecione um produto</option>';
+      await carregarProdutosNoSelect();
+      await carregarHistorico();
     } else {
-      alert("Erro ao registrar a movimentação no servidor.");
+      // Mostra o motivo enviado pelo servidor (ex.: estoque insuficiente)
+      alert(dados.mensagem || "Erro ao registrar a movimentação.");
     }
   } catch (error) {
     console.error("Erro de conexão:", error);
     alert("Não foi possível conectar ao servidor.");
   }
+});
+
+// 8. Executa as buscas iniciais assim que a página terminar de carregar
+document.addEventListener("DOMContentLoaded", () => {
+  carregarProdutosNoSelect();
+  carregarHistorico();
 });

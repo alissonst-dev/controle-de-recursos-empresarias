@@ -277,15 +277,11 @@
             <div class="movimentacao-form-area">
               <div class="meu-grupo-input">
                 <label for="input-produto-movimentacao">Produto *</label>
-                <div class="movimentacao-input-icon">
-                  <span class="movimentacao-search-icon"></span>
-                  <input
-                    id="input-produto-movimentacao"
-                    type="text"
-                    placeholder="Busque por nome"
-                    required
-                  />
-                </div>
+                <select id="input-produto-movimentacao" required>
+                  <option value="" disabled selected>
+                    Selecione um produto
+                  </option>
+                </select>
               </div>
 
               <div class="meu-grupo-input">
@@ -337,6 +333,40 @@
               </button>
             </div>
           </form>
+        </section>
+
+        <section class="card shadow-sm border-0 rounded-3 p-3 mb-4">
+          <h2 class="titulo-secao fw-bold mb-3 text-dark">
+            Histórico de Movimentações
+          </h2>
+
+          <div class="table-responsive">
+            <table
+              id="historico-movimentacoes-table"
+              class="tabela-sistema table table-hover align-middle mb-0"
+            >
+              <caption class="visually-hidden">
+                Tabela de histórico de movimentações
+              </caption>
+
+              <thead class="small text-uppercase">
+                <tr>
+                  <th scope="col" class="titulo-tabela-produtos">Produto</th>
+                  <th scope="col" class="titulo-tabela-produtos text-center">
+                    Tipo
+                  </th>
+                  <th scope="col" class="titulo-tabela-produtos text-center">
+                    Quantidade
+                  </th>
+                  <th scope="col" class="titulo-tabela-produtos text-center">
+                    Data
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody class="small"></tbody>
+            </table>
+          </div>
         </section>
       </div>
     </main>

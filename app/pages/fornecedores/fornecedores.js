@@ -183,7 +183,7 @@ async function carregarFornecedores() {
                   <span class="status-badge status-badge-success">${fornecedor.status}</span>
                 </td>
                 <td class="text-center">
-                  <button type="button" aria-label="Excluir fornecedor" class="btn btn-link text-muted p-0">
+                  <button type="button" aria-label="Excluir fornecedor" class="btn btn-link text-muted p-0 btn-excluir-fornecedor" data-id="${fornecedor.id}">
                     <img src="../../../img/icones/lixo_icone.svg" alt="" aria-hidden="true" width="24" height="24">
                   </button>
                 </td>
@@ -198,6 +198,33 @@ async function carregarFornecedores() {
     console.error("Erro ao carregar tabela:", error);
   }
 }
+
+// 4. Escuta cliques no botão de excluir (delegado, já que as linhas são criadas dinamicamente)
+tabelaFornecedores.addEventListener("click", async (event) => {
+  const botaoExcluir = event.target.closest(".btn-excluir-fornecedor");
+  if (!botaoExcluir) return;
+
+  const confirmou = confirm(
+    "Tem certeza que deseja excluir este fornecedor?",
+  );
+  if (!confirmou) return;
+
+  try {
+    const resposta = await fetch(
+      `http://localhost:3000/api/fornecedores/${botaoExcluir.dataset.id}`,
+      { method: "DELETE" },
+    );
+
+    if (resposta.ok) {
+      carregarFornecedores();
+    } else {
+      alert("Erro ao excluir o fornecedor.");
+    }
+  } catch (error) {
+    console.error("Erro de conexão:", error);
+    alert("Não foi possível conectar ao servidor.");
+  }
+});
 
 // 3. Executa a função assim que a página terminar de carregar
 document.addEventListener("DOMContentLoaded", carregarFornecedores);

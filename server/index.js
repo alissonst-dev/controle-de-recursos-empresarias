@@ -62,6 +62,20 @@ app.post("/api/produtos", (req, res) => {
   });
 });
 
+// 3. ROTA DE EXCLUSÃO (DELETE) - Remove o produto pelo id
+app.delete("/api/produtos/:id", (req, res) => {
+  const produtos = lerBanco("produtos.json");
+  const id = Number(req.params.id);
+  const produtosRestantes = produtos.filter((produto) => produto.id !== id);
+
+  if (produtosRestantes.length === produtos.length) {
+    return res.status(404).json({ mensagem: "Produto não encontrado." });
+  }
+
+  salvarBanco("produtos.json", produtosRestantes);
+  res.json({ mensagem: "Produto excluído com sucesso!" });
+});
+
 /*
    ROTAS DA API - FORNECEDORES
     */
@@ -86,6 +100,21 @@ app.post("/api/fornecedores", (req, res) => {
   });
 });
 
+app.delete("/api/fornecedores/:id", (req, res) => {
+  const fornecedores = lerBanco("fornecedores.json");
+  const id = Number(req.params.id);
+  const fornecedoresRestantes = fornecedores.filter(
+    (fornecedor) => fornecedor.id !== id,
+  );
+
+  if (fornecedoresRestantes.length === fornecedores.length) {
+    return res.status(404).json({ mensagem: "Fornecedor não encontrado." });
+  }
+
+  salvarBanco("fornecedores.json", fornecedoresRestantes);
+  res.json({ mensagem: "Fornecedor excluído com sucesso!" });
+});
+
 /*
    ROTAS DA API - MOVIMENTAÇÕES
     */
@@ -96,10 +125,45 @@ app.get("/api/movimentacoes", (req, res) => {
 });
 
 app.post("/api/movimentacoes", (req, res) => {
-  const movimentacoes = lerBanco("movimentacoes.json");
+  const { produtoId, quantidade, tipo } = req.body;
 
-  const novaMovimentacao = req.body;
-  novaMovimentacao.id = Date.now();
+  if (!produtoId || !quantidade || !tipo) {
+    return res
+      .status(400)
+      .json({ mensagem: "Produto, quantidade e tipo são obrigatórios." });
+  }
+
+  const produtos = lerBanco("produtos.json");
+  const produto = produtos.find((p) => p.id === Number(produtoId));
+
+  if (!produto) {
+    return res.status(404).json({ mensagem: "Produto não encontrado." });
+  }
+
+  // Regra de negócio principal: não deixa sair mais do que existe em estoque
+  if (tipo === "saida" && produto.quantidade < quantidade) {
+    return res.status(400).json({
+      mensagem: `Estoque insuficiente. Disponível: ${produto.quantidade} unidade(s).`,
+    });
+  }
+
+  // Atualiza o estoque do produto de acordo com o tipo de movimentação
+  produto.quantidade =
+    tipo === "entrada"
+      ? produto.quantidade + Number(quantidade)
+      : produto.quantidade - Number(quantidade);
+
+  salvarBanco("produtos.json", produtos);
+
+  const movimentacoes = lerBanco("movimentacoes.json");
+  const novaMovimentacao = {
+    id: Date.now(),
+    produtoId: produto.id,
+    produtoNome: produto.nome,
+    quantidade: Number(quantidade),
+    tipo,
+    data: new Date().toISOString(),
+  };
 
   movimentacoes.push(novaMovimentacao);
   salvarBanco("movimentacoes.json", movimentacoes);
@@ -107,6 +171,7 @@ app.post("/api/movimentacoes", (req, res) => {
   res.status(201).json({
     mensagem: "Movimentação registrada com sucesso!",
     movimentacao: novaMovimentacao,
+    estoqueAtualizado: produto.quantidade,
   });
 });
 

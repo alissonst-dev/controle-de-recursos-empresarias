@@ -61,6 +61,7 @@ formProduto.addEventListener("submit", async (event) => {
   const precoCusto = document.getElementById("input-preco-custo").value;
   const precoVenda = document.getElementById("input-preco-venda").value;
   const quantidade = document.getElementById("input-qtd").value || 0; // Se vazio, vira 0
+  const quantidadeMinima = document.getElementById("input-qtd-minima").value || 0;
 
   // 4. Junta tudo em um objeto completo seguindo o padrão do seu layout
   const novoProduto = {
@@ -71,6 +72,7 @@ formProduto.addEventListener("submit", async (event) => {
     preco_custo: parseFloat(precoCusto),
     preco_venda: parseFloat(precoVenda),
     quantidade: parseInt(quantidade),
+    quantidade_minima: parseInt(quantidadeMinima),
     status: "Ativo", // Todo produto novo entra como Ativo por padrão
   };
 
@@ -152,7 +154,7 @@ async function carregarProdutos() {
                   </span>
                 </td>
                 <td class="text-center">
-                  <button type="button" aria-label="Excluir produto" class="btn btn-link text-muted p-0">
+                  <button type="button" aria-label="Excluir produto" class="btn btn-link text-muted p-0 btn-excluir-produto" data-id="${produto.id}">
                     <img src="../../../img/icones/lixo_icone.svg" alt="" aria-hidden="true" width="24" height="24">
                   </button>
                 </td>
@@ -165,6 +167,31 @@ async function carregarProdutos() {
     console.error("Erro ao carregar tabela:", error);
   }
 }
+
+// 5. Escuta cliques no botão de excluir (delegado, já que as linhas são criadas dinamicamente)
+tabelaProdutos.addEventListener("click", async (event) => {
+  const botaoExcluir = event.target.closest(".btn-excluir-produto");
+  if (!botaoExcluir) return;
+
+  const confirmou = confirm("Tem certeza que deseja excluir este produto?");
+  if (!confirmou) return;
+
+  try {
+    const resposta = await fetch(
+      `http://localhost:3000/api/produtos/${botaoExcluir.dataset.id}`,
+      { method: "DELETE" },
+    );
+
+    if (resposta.ok) {
+      carregarProdutos();
+    } else {
+      alert("Erro ao excluir o produto.");
+    }
+  } catch (error) {
+    console.error("Erro de conexão:", error);
+    alert("Não foi possível conectar ao servidor.");
+  }
+});
 
 // 4. Executa a função assim que a página terminar de carregar
 document.addEventListener("DOMContentLoaded", carregarProdutos);

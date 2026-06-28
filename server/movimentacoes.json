@@ -1,9 +1,10 @@
 [
   {
-    "tipo": "entrada",
-    "produto": "Notebook",
-    "quantidade": 2,
-    "data": "2026-06-27T16:55:16.903Z",
-    "id": 1782579316918
+    "id": 1782671212384,
+    "produtoId": 1782671163497,
+    "produtoNome": "Caixa Organizadora",
+    "quantidade": 5,
+    "tipo": "saida",
+    "data": "2026-06-28T18:26:52.384Z"
   }
 ]
