@@ -64,6 +64,16 @@ function renderizarLinhaProduto(produto) {
   return linha;
 }
 
+// mostrado quando a API não responde, só pra ilustrar o leiaute da tabela
+function renderizarExemploProduto() {
+  return renderizarLinhaProduto({
+    nome: "Fone de Ouvido Bluetooth (exemplo)",
+    categoria: "Eletrônicos",
+    quantidade: 48,
+    quantidade_minima: 10,
+  });
+}
+
 // busca produtos e fornecedores e preenche cards + tabela de estoque
 async function carregarDashboard() {
   try {
@@ -110,6 +120,9 @@ async function carregarDashboard() {
     });
   } catch (error) {
     console.error("Erro ao carregar o dashboard:", error);
+    // backend fora do ar: mantém um exemplo visível em vez de deixar a tabela vazia
+    tabelaEstoque.innerHTML = "";
+    tabelaEstoque.appendChild(renderizarExemploProduto());
   }
 }
 

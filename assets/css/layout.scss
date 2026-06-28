@@ -36,21 +36,6 @@
   }
 }
 
-@media (min-width: 992px) {
-  main {
-    margin-left: $largura-sidebar;
-  }
-  .page-header {
-    margin-bottom: 2rem;
-  }
-}
-
-@media (max-width: 991.98px) {
-  main {
-    margin-top: $altura-menu-mobile;
-  }
-}
-
 .page-header {
   height: 4.65rem;
   background-color: $cor-branco;
@@ -65,19 +50,8 @@
   }
 
   .page-header {
+    margin-bottom: 2rem;
     padding: 0 1.5rem;
-  }
-}
-
-@media (max-width: 991.98px) {
-  main {
-    margin-top: 0;
-  }
-
-  .page-header {
-    margin-top: 3.75rem;
-    height: 4.65rem;
-    padding: 0 1rem;
   }
 }
 
