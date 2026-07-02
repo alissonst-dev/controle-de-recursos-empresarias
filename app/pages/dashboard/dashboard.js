@@ -1,17 +1,21 @@
-// cards de estatística do topo da página
-const elTotalProdutos = document.getElementById("dashboard-total-produtos");
-const elEstoqueBaixo = document.getElementById("dashboard-estoque-baixo");
-const elValorTotal = document.getElementById("dashboard-valor-total");
-const elTotalFornecedores = document.getElementById(
-  "dashboard-total-fornecedores",
-);
+// ========================================
+// 1. REFERÊNCIAS AO DOM
+// ========================================
 
-// corpo da tabela "Status do Estoque"
-const tabelaEstoque = document.querySelector("#dashboard-stock-table tbody");
+const elTotalProdutos     = document.getElementById("dashboard-total-produtos");     // <h3> do card "Total de Produtos"
+const elEstoqueBaixo      = document.getElementById("dashboard-estoque-baixo");       // <h3> do card "Estoque Baixo"
+const elValorTotal        = document.getElementById("dashboard-valor-total");          // <h3> do card "Valor em Estoque"
+const elTotalFornecedores = document.getElementById("dashboard-total-fornecedores");  // <h3> do card "Total de Fornecedores"
+const tabelaEstoque       = document.querySelector("#dashboard-stock-table tbody");    // <tbody> da tabela de status do estoque
 
-// status do produto com base na quantidade e na quantidade mínima cadastrada
+
+// ========================================
+// 2. FUNÇÕES AUXILIARES
+// ========================================
+
+// Retorna o texto e a classe CSS de status com base na quantidade atual versus a quantidade mínima cadastrada
 function calcularStatusEstoque(produto) {
-  const quantidadeMinima = produto.quantidade_minima || 5;
+  const quantidadeMinima = produto.quantidade_minima || 5; // fallback de 5 unidades se o campo não foi preenchido
 
   if (produto.quantidade === 0) {
     return { texto: "Crítico", classe: "danger" };
@@ -24,17 +28,18 @@ function calcularStatusEstoque(produto) {
   return { texto: "Estável", classe: "success" };
 }
 
-// largura da barra de progresso, proporcional à quantidade mínima do produto
+// Retorna o percentual de preenchimento da barra de progresso, com teto de 100%
 function calcularPercentualEstoque(produto) {
   const quantidadeMinima = produto.quantidade_minima || 5;
-  const referencia = Math.max(quantidadeMinima * 4, 20);
-  return Math.min(100, Math.round((produto.quantidade / referencia) * 100));
+  const referencia = Math.max(quantidadeMinima * 4, 20); // referência proporcional ao mínimo, com piso de 20
+  return Math.min(100, Math.round((produto.quantidade / referencia) * 100)); // Math.min garante que não ultrapasse 100%
 }
 
+// Cria e retorna um <tr> completo com os dados do produto para inserção na tabela
 function renderizarLinhaProduto(produto) {
-  const status = calcularStatusEstoque(produto);
+  const status     = calcularStatusEstoque(produto);
   const percentual = calcularPercentualEstoque(produto);
-  const linha = document.createElement("tr");
+  const linha      = document.createElement("tr");
 
   linha.innerHTML = `
     <td>
@@ -58,48 +63,52 @@ function renderizarLinhaProduto(produto) {
     </td>
     <td class="text-center">
       <span class="dashboard-status dashboard-status-${status.classe}">${status.texto}</span>
-    </td>
-  `;
+    </td>`;
 
   return linha;
 }
 
-// mostrado quando a API não responde, só pra ilustrar o leiaute da tabela
+// Linha de exemplo exibida quando o backend não responde, mantém o layout visível
 function renderizarExemploProduto() {
   return renderizarLinhaProduto({
-    nome: "Fone de Ouvido Bluetooth (exemplo)",
-    categoria: "Eletrônicos",
-    quantidade: 48,
+    nome:              "Fone de Ouvido Bluetooth (exemplo)",
+    categoria:         "Eletrônicos",
+    quantidade:        48,
     quantidade_minima: 10,
   });
 }
 
-// busca produtos e fornecedores e preenche cards + tabela de estoque
+
+// ========================================
+// 3. CARREGAMENTO DO DASHBOARD
+// Promise.all executa os dois GETs em paralelo, mais eficiente que sequencial — ID 23
+// ========================================
+
 async function carregarDashboard() {
   try {
     const [respostaProdutos, respostaFornecedores] = await Promise.all([
-      fetch("http://localhost:3000/api/produtos"),
-      fetch("http://localhost:3000/api/fornecedores"),
+      fetch("http://localhost:3000/api/produtos"),     // GET /api/produtos — ID 23
+      fetch("http://localhost:3000/api/fornecedores"), // GET /api/fornecedores — ID 23
     ]);
 
-    const produtos = await respostaProdutos.json();
+    const produtos     = await respostaProdutos.json();
     const fornecedores = await respostaFornecedores.json();
 
+    // Array.filter() conta produtos com quantidade acima de zero mas abaixo do mínimo
     const estoqueBaixo = produtos.filter(
-      (produto) =>
-        produto.quantidade > 0 &&
-        produto.quantidade <= (produto.quantidade_minima || 5),
+      (produto) => produto.quantidade > 0 && produto.quantidade <= (produto.quantidade_minima || 5)
     ).length;
 
+    // Array.reduce() acumula o valor total em estoque: preco_venda * quantidade de cada produto
     const valorTotal = produtos.reduce(
       (total, produto) =>
         total + (Number(produto.preco_venda) || 0) * (Number(produto.quantidade) || 0),
-      0,
+      0
     );
 
-    elTotalProdutos.textContent = produtos.length;
-    elEstoqueBaixo.textContent = estoqueBaixo;
-    elValorTotal.textContent = `R$ ${valorTotal.toFixed(2).replace(".", ",")}`;
+    elTotalProdutos.textContent     = produtos.length;
+    elEstoqueBaixo.textContent      = estoqueBaixo;
+    elValorTotal.textContent        = `R$ ${valorTotal.toFixed(2).replace(".", ",")}`;
     elTotalFornecedores.textContent = fornecedores.length;
 
     tabelaEstoque.innerHTML = "";
@@ -110,20 +119,24 @@ async function carregarDashboard() {
           <td colspan="4" class="text-center text-muted py-4">
             Nenhum produto cadastrado no momento.
           </td>
-        </tr>
-      `;
+        </tr>`;
       return;
     }
 
     produtos.forEach((produto) => {
       tabelaEstoque.appendChild(renderizarLinhaProduto(produto));
     });
+
   } catch (error) {
     console.error("Erro ao carregar o dashboard:", error);
-    // backend fora do ar: mantém um exemplo visível em vez de deixar a tabela vazia
     tabelaEstoque.innerHTML = "";
-    tabelaEstoque.appendChild(renderizarExemploProduto());
+    tabelaEstoque.appendChild(renderizarExemploProduto()); // fallback visual quando o backend está fora do ar
   }
 }
 
-document.addEventListener("DOMContentLoaded", carregarDashboard);
+
+// ========================================
+// INICIALIZAÇÃO
+// ========================================
+
+document.addEventListener("DOMContentLoaded", carregarDashboard); // ID 23
