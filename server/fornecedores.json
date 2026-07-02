@@ -1,0 +1,15 @@
+[
+  {
+    "nome": "Reval",
+    "cnpj": "06.089.129/0001-02",
+    "categoria": "papelaria",
+    "email": "reval@gmail.com",
+    "telefone": "(42) 99916-8291",
+    "cep": "17232-232",
+    "endereco": "Rua Santo Antonio",
+    "cidade": "Itapuí",
+    "estado": "SP",
+    "status": "Ativo",
+    "id": 1783003256145
+  }
+]

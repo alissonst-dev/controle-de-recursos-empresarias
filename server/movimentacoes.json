@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1782698884097,
+    "produtoId": 1782698874574,
+    "produtoNome": "Caixa organizadora",
+    "quantidade": 5,
+    "tipo": "entrada",
+    "data": "2026-06-29T02:08:04.097Z"
+  },
+  {
+    "id": 1782698914689,
+    "produtoId": 1782698874574,
+    "produtoNome": "Caixa organizadora",
+    "quantidade": 5,
+    "tipo": "saida",
+    "data": "2026-06-29T02:08:34.689Z"
+  },
+  {
+    "id": 1782699151108,
+    "produtoId": 1782698874574,
+    "produtoNome": "Caixa organizadora",
+    "quantidade": 5,
+    "tipo": "entrada",
+    "data": "2026-06-29T02:12:31.108Z"
+  }
+]
